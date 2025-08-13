@@ -11,8 +11,8 @@ from .forms import ContactForm, CalculatorForm
 
 def home(request):
     langauge = translation.get_language()
-
-    products = Product.objects.all()[:5]
+    print(langauge)
+    products = Product.objects.all()
     return render(request, 'main/home.html', {
         'products': [p.get_translation_json(langauge) for p in products]
     })

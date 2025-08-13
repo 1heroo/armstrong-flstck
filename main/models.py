@@ -17,7 +17,10 @@ class Product(models.Model):
         return translation.name if translation else 'Без названия'
 
     def get_translation_json(self, lang):
+        print(self.translations.all())
+
         translation = self.translations.filter(language=lang).first()
+        print(translation)
         if not translation:
             translation = self.translations.first()
 
@@ -43,7 +46,7 @@ class ProductTranslation(models.Model):
     LANGUAGES = [
         ('en', 'English'),
         ('ru', 'Русский'),
-        ('Ky', 'Кыргызча'),
+        ('ky', 'Кыргызча'),
     ]
 
     product = models.ForeignKey(Product, related_name='translations', on_delete=models.CASCADE)
