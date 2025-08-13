@@ -1,0 +1,132 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-11 16:20+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: templates/base.html:8 templates/main/home.html:5
+msgid "Modern Armstrong - Kyrgyzstan"
+msgstr "Современные потолочные решения - Кыргызстан"
+
+#: templates/base.html:30
+msgid "Armstrong KG"
+msgstr "Потолочные решения КГ"
+
+#: templates/base.html:40
+msgid "Home"
+msgstr "Главная"
+
+#: templates/base.html:43
+msgid "Products"
+msgstr "Продукция"
+
+#: templates/base.html:46
+msgid "Calculator"
+msgstr "Калькулятор"
+
+#: templates/base.html:49
+msgid "Contact"
+msgstr "Контакты"
+
+#: templates/main/home.html:15
+msgid "Modern Ceilings, Engineered for Excellence."
+msgstr "Современные потолки, созданные для превосходства."
+
+#: templates/main/home.html:18
+msgid ""
+"High-quality Armstrong in Kyrgyzstan for commercial and residential "
+"spaces."
+msgstr ""
+"Высококачественные потолочные решения в Кыргызстане для коммерческих и жилых помещений."
+
+#: templates/main/home.html:22
+msgid "Calculate Your Cost"
+msgstr "Рассчитать стоимость"
+
+#: templates/main/home.html:25
+msgid "View Our Products"
+msgstr "Посмотреть продукцию"
+
+#: templates/main/home.html:39
+msgid "Our Product Range"
+msgstr "Наш ассортимент"
+
+#: templates/main/home.html:41
+msgid ""
+"Discover our comprehensive collection of premium Armstrong, designed "
+"to meet the highest standards of quality and aesthetics."
+msgstr ""
+"Откройте для себя нашу полную коллекцию премиальных потолочных решений, разработанных для соответствия самым высоким стандартам качества и эстетики."
+
+#: templates/main/home.html:64
+msgid "Learn More"
+msgstr "Узнать больше"
+
+#: templates/main/home.html:79
+msgid "Ready to transform your space?"
+msgstr "Готовы преобразить ваше пространство?"
+
+#: templates/main/home.html:80
+msgid "Get an instant cost estimate for your ceiling project."
+msgstr "Получите мгновенную оценку стоимости вашего потолочного проекта."
+
+#: templates/main/home.html:83
+msgid "Get Your Estimate Now"
+msgstr "Получите оценку сейчас"
+
+#: templates/base.html: 117
+msgid "Contact Info"
+msgstr "Контактная информация"
+
+#: templates/main/product_detail.html:61
+msgid "Price"
+msgstr "Цена"
+
+#: templates/main/product_detail.html:69
+msgid "Description"
+msgstr "Описание"
+
+#: templates/main/product_detail.html:76
+msgid "Categories"
+msgstr "Описание"
+
+#: templates/main/product_detail.html:85
+msgid "Calculate Cost"
+msgstr "Рассчитать стоимость"
+
+#: templates/main/product_detail.html:88
+msgid "Get Quote"
+msgstr "Получить предложение"
+
+#: templates/main/product_detail.html:89
+msgid "Related Products"
+msgstr "Похожие продукты"
+
+#: templates/main/product_detail.html:101
+msgid "Explore our full range of ceiling solutions."
+msgstr "Изучите наш полный ассортимент потолочных решений."
+
+#: templates/main/product_detail.html:104
+msgid "View All Products"
+msgstr "Посмотреть все продукты"
+
+
+
+
+
