@@ -24,25 +24,45 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Scroll animations
+    // Enhanced scroll animations
     function initAnimations() {
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            rootMargin: '0px 0px -100px 0px'
         };
         
         const observer = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
+                    entry.target.classList.add('visible');
+                    
+                    // Handle staggered animations for child elements
+                    const staggeredElements = entry.target.querySelectorAll('.animate-up, .animate-text, .animate-card');
+                    staggeredElements.forEach((el, index) => {
+                        setTimeout(() => {
+                            el.classList.add('visible');
+                        }, index * 100);
+                    });
                 }
             });
         }, observerOptions);
         
-        // Observe all elements with fade-in class
-        document.querySelectorAll('.fade-in').forEach(el => {
+        // Observe all elements with animation classes
+        const animatedElements = document.querySelectorAll('.fade-in, .animate-up, .animate-text, .animate-card, .animate-hero');
+        animatedElements.forEach(el => {
             observer.observe(el);
         });
+        
+        // Initialize hero animations on page load
+        setTimeout(() => {
+            const heroElements = document.querySelectorAll('.animate-hero');
+            heroElements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('visible');
+                }, index * 200);
+            });
+        }, 300);
     }
     
     // Smooth scroll for anchor links
@@ -224,6 +244,18 @@ style.textContent = `
     }
     
     .fade-in.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* Ensure animations work on page load */
+    .animate-hero {
+        opacity: 0;
+        transform: translateY(60px);
+        transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    .animate-hero.visible {
         opacity: 1;
         transform: translateY(0);
     }

@@ -8,20 +8,20 @@
     <div class="row">
         <div class="col-lg-8 mx-auto">
             <div class="text-center mb-5">
-                <h1 class="display-5 fw-bold mb-3">{% trans "Get an Instant Cost Estimate" %}</h1>
-                <p class="lead text-muted">
+                <h1 class="display-5 fw-bold mb-3 animate-text">{% trans "Get an Instant Cost Estimate" %}</h1>
+                <p class="lead text-muted animate-text">
                     {% trans "Calculate your ceiling project cost in seconds. Just enter your room dimensions and select your preferred ceiling type." %}
                 </p>
             </div>
             
-            <div class="card shadow">
+            <div class="card shadow animate-card">
                 <div class="card-body p-4">
                     <form id="calculatorForm" method="post">
                         {% csrf_token %}
 
                         <div class="row mb-4">
                             <div class="col-12">
-                                <h5 class="fw-bold mb-3">
+                                <h5 class="fw-bold mb-3 animate-up">
                                     <i class="fas fa-ruler-combined me-2 text-primary"></i>
                                     {% trans "Project Details" %}
                                 </h5>
@@ -29,13 +29,13 @@
                         </div>
 
                         <div class="row g-3 mb-4">
-                            <div class="col-md-6">
+                            <div class="col-md-6 animate-up animate-up-delay-1">
                                 <label for="{{ form.width.id_for_label }}" class="form-label fw-semibold">
                                     {% trans "Room Width (meters)" %}
                                 </label>
                                 {{ form.width }}
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 animate-up animate-up-delay-1">
                                 <label for="{{ form.length.id_for_label }}" class="form-label fw-semibold">
                                     {% trans "Room Length (meters)" %}
                                 </label>
@@ -43,24 +43,26 @@
                             </div>
                         </div>
 
-                        <div class="mb-4">
+                        <div class="mb-4 animate-up animate-up-delay-2">
                             <label for="{{ form.ceiling_type.id_for_label }}" class="form-label fw-semibold">
                                 {% trans "Select Ceiling Type" %}
                             </label>
                             {{ form.ceiling_type }}
                         </div>
 
-                        <button type="submit" onclick="console.log('clicked');" class="btn btn-primary btn-lg w-100 mb-4">
-                            <i class="fas fa-calculator me-2"></i>
-                            {%  trans "Calculate Cost" %}
-                        </button>
+                        <div class="animate-up animate-up-delay-3">
+                            <button type="submit" onclick="console.log('clicked');" class="btn btn-primary btn-lg w-100 mb-4">
+                                <i class="fas fa-calculator me-2"></i>
+                                {%  trans "Calculate Cost" %}
+                            </button>
+                        </div>
                     </form>
                     <!-- Results Section -->
-                    <div id="results" class="results-section" style="display: none;">
+                    <div id="results" class="results-section animate-up" style="display: none;">
                         <div class="alert alert-success">
                             <div class="row">
                                 <div class="col-12">
-                                    <h5 class="fw-bold mb-3">
+                                    <h5 class="fw-bold mb-3 animate-text">
                                         <i class="fas fa-chart-line me-2"></i>
                                         {% trans "Estimated Cost" %}
                                     </h5>
@@ -88,7 +90,7 @@
                             </div>
                         </div>
                         
-                        <div class="text-center">
+                        <div class="text-center animate-text">
                             <p class="text-muted small mb-3">
                                 {% trans "This is a preliminary estimate. Final pricing may vary based on specific requirements and installation complexity." %}
                             </p>

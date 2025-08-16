@@ -11,13 +11,13 @@
         <div class="container">
             <div class="row align-items-center min-vh-100">
                 <div class="col-lg-6">
-                    <h1 class="display-4 fw-bold text-white mb-4">
+                    <h1 class="display-4 fw-bold text-white mb-4 animate-hero">
                         {% trans "Modern Ceilings, Engineered for Excellence." %}
                     </h1>
-                    <p class="lead text-white mb-4">
+                    <p class="lead text-white mb-4 animate-hero">
                         {% trans "High-quality ceiling solutions in Kyrgyzstan for commercial and residential spaces." %}
                     </p>
-                    <div class="d-flex flex-wrap gap-3">
+                    <div class="d-flex flex-wrap gap-3 animate-hero">
                         <a href="{% url 'calculator' %}" class="btn btn-primary btn-lg">
                             <i class="fas fa-calculator me-2"></i>{% trans "Calculate Your Cost" %}
                         </a>
@@ -36,8 +36,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto text-center mb-5">
-                <h2 class="display-5 fw-bold mb-3">{% trans "Our Product Range" %}</h2>
-                <p class="lead text-muted">
+                <h2 class="display-5 fw-bold mb-3 animate-text">{% trans "Our Product Range" %}</h2>
+                <p class="lead text-muted animate-text">
                     {% trans "Discover our comprehensive collection of premium ceiling solutions, designed to meet the highest standards of quality and aesthetics." %}
                 </p>
             </div>
@@ -46,7 +46,7 @@
         <div class="row g-4">
             {% for product in products %}
             <div class="col-lg-6 col-xl-4">
-                <div class="card product-card h-100 shadow-sm">
+                <div class="card product-card h-100 shadow-sm animate-card">
                     <div class="card-img-container">
                         <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
                     </div>
@@ -76,12 +76,14 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto text-center">
-                <h2 class="display-6 fw-bold mb-3">{% trans 'Ready to transform your space?' %}</h2>
-                <p class="lead mb-4">{% trans 'Get an instant cost estimate for your ceiling project.' %}</p>
-                <a href="{% url 'calculator' %}" class="btn btn-light btn-lg">
-                    <i class="fas fa-calculator me-2"></i>
-                    {% trans 'Get Your Estimate Now' %}
-                </a>
+                <h2 class="display-6 fw-bold mb-3 animate-text">{% trans 'Ready to transform your space?' %}</h2>
+                <p class="lead mb-4 animate-text">{% trans 'Get an instant cost estimate for your ceiling project.' %}</p>
+                <div class="animate-text">
+                    <a href="{% url 'calculator' %}" class="btn btn-light btn-lg">
+                        <i class="fas fa-calculator me-2"></i>
+                        {% trans 'Get Your Estimate Now' %}
+                    </a>
+                </div>
             </div>
         </div>
     </div>

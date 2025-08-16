@@ -9,8 +9,8 @@
     <div class="row">
         <div class="col-lg-8 mx-auto">
             <div class="text-center mb-5">
-                <h1 class="display-5 fw-bold mb-3">{% trans "Ready to Start Your Project?" %}</h1>
-                <p class="lead text-muted">
+                <h1 class="display-5 fw-bold mb-3 animate-text">{% trans "Ready to Start Your Project?" %}</h1>
+                <p class="lead text-muted animate-text">
                     {% trans "Fill out the form below and our expert will contact you shortly with a detailed quote tailored to your specific needs." %}
                 </p>
             </div>
@@ -18,9 +18,9 @@
             <div class="row g-4">
                 <!-- Contact Form -->
                 <div class="col-lg-8">
-                    <div class="card shadow">
+                    <div class="card shadow animate-card">
                         <div class="card-body p-4">
-                            <h5 class="fw-bold mb-4">
+                            <h5 class="fw-bold mb-4 animate-up">
                                 <i class="fas fa-envelope me-2 text-primary"></i>
                                 {% trans "Send us a message" %}
                             </h5>
@@ -29,35 +29,63 @@
                                 {% csrf_token %}
                                 
                                 <div class="row g-3">
-                                    <div class="col-12">
+                                    <div class="col-12 animate-up animate-up-delay-1">
                                         <label for="{{ form.name.id_for_label }}" class="form-label fw-semibold">
                                             {% trans "Your Name *" %}
                                         </label>
                                         {{ form.name }}
+                                        {% if form.name.errors %}
+                                            <div class="text-danger small mt-1">
+                                                {% for error in form.name.errors %}
+                                                    <div>{{ error }}</div>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
                                     </div>
                                     
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 animate-up animate-up-delay-2">
                                         <label for="{{ form.phone.id_for_label }}" class="form-label fw-semibold">
                                             {% trans "Phone Number *" %}
                                         </label>
                                         {{ form.phone }}
+                                        {% if form.phone.errors %}
+                                            <div class="text-danger small mt-1">
+                                                {% for error in form.phone.errors %}
+                                                    <div>{{ error }}</div>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
                                     </div>
                                     
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 animate-up animate-up-delay-2">
                                         <label for="{{ form.email.id_for_label }}" class="form-label fw-semibold">
                                             {% trans "Email Address *" %}
                                         </label>
                                         {{ form.email }}
+                                        {% if form.email.errors %}
+                                            <div class="text-danger small mt-1">
+                                                {% for error in form.email.errors %}
+                                                    <div>{{ error }}</div>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
                                     </div>
                                     
-                                    <div class="col-12">
+                                    <div class="col-12 animate-up animate-up-delay-3">
                                         <label for="{{ form.message.id_for_label }}" class="form-label fw-semibold">
                                             {% trans "Your Message *" %}
                                         </label>
                                         {{ form.message }}
+                                        {% if form.message.errors %}
+                                            <div class="text-danger small mt-1">
+                                                {% for error in form.message.errors %}
+                                                    <div>{{ error }}</div>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
                                     </div>
                                     
-                                    <div class="col-12">
+                                    <div class="col-12 animate-up animate-up-delay-4">
                                         <button type="submit" class="btn btn-primary btn-lg w-100">
                                             <i class="fas fa-paper-plane me-2"></i>
                                             {% trans "Submit Inquiry" %}
@@ -72,7 +100,7 @@
                 <!-- Contact Information -->
                 <div class="col-lg-4">
                     <div class="contact-info">
-                        <div class="contact-item mb-4">
+                        <div class="contact-item mb-4 animate-card animate-up-delay-1">
                             <div class="card h-100 text-center">
                                 <div class="card-body">
                                     <div class="contact-icon mb-3">
@@ -85,7 +113,7 @@
                             </div>
                         </div>
                         
-                        <div class="contact-item mb-4">
+                        <div class="contact-item mb-4 animate-card animate-up-delay-2">
                             <div class="card h-100 text-center">
                                 <div class="card-body">
                                     <div class="contact-icon mb-3">
@@ -98,7 +126,7 @@
                             </div>
                         </div>
                         
-                        <div class="contact-item">
+                        <div class="contact-item animate-card animate-up-delay-3">
                             <div class="card h-100 text-center">
                                 <div class="card-body">
                                     <div class="contact-icon mb-3">
