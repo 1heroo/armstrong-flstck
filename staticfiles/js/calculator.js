@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const productEl = document.getElementById('productNameResult');
 
         if (areaEl) areaEl.textContent = area.toFixed(2) + ' m²';
-        if (priceEl) priceEl.textContent = `$${pricePerSqm.toFixed(2)}`;
-        if (totalEl) totalEl.textContent = `$${totalCost.toFixed(2)}`;
+        if (priceEl) priceEl.textContent = `${pricePerSqm.toFixed(2)} KGS/m²`;
+        if (totalEl) totalEl.textContent = `${totalCost.toFixed(2)} KGS`;
         if (productEl) productEl.textContent = productName;
 
         resultsSection.style.display = 'block';

@@ -46,13 +46,6 @@ msgstr "Байланыш"
 msgid "Modern Ceilings, Engineered for Excellence."
 msgstr "Заманбап потолоктор, мыкты сапатка жасалган."
 
-#: templates/main/home.html:18
-msgid ""
-"High-quality ceiling solutions in Kyrgyzstan for commercial and residential "
-"spaces."
-msgstr ""
-"Кыргызстанда коммерциялык жана турак жайлар үчүн жогорку сапаттагы Armstrong."
-
 #: templates/main/home.html:22
 msgid "Calculate Your Cost"
 msgstr "Баасын эсептөө"
@@ -88,9 +81,29 @@ msgstr "Сиздин потолок долбооруңуз үчүн дароо �
 msgid "Get Your Estimate Now"
 msgstr "Бааңызды азыр алыңыз"
 
-#: templates/base.html: 117
+#: templates/base.html: 111
+msgid "High-quality ceiling solutions in Kyrgyzstan for commercial and residential spaces."
+msgstr "Кыргызстанда коммерциялык жана турак жайлар үчүн жогорку сапаттагы потолок чечимдери."
+
+#: templates/base.html: 114
 msgid "Contact Info"
 msgstr "Байланыш маалыматы"
+
+#: templates/base.html: 117
+msgid "Bishkek, Kyrgyzstan"
+msgstr "Бишкек, Кыргызстан"
+
+#: templates/base.html: 129
+msgid "Office Hours"
+msgstr "Иш убактысы"
+
+#: templates/base.html: 130
+msgid "Monday - Friday: 9:00 - 18:00"
+msgstr "Дүйшөмбү - Жума: 9:00 - 18:00"
+
+#: templates/base.html: 136
+msgid "2025 Armstrong. All rights reserved."
+msgstr "2025 Armstrong. Бардык укуктар корголгон."
 
 
 ##############################################################################################
@@ -127,3 +140,104 @@ msgstr "Потолок чечимдеринин толук ассортимен�
 #: templates/main/product_detail.html:104
 msgid "View All Products"
 msgstr "Бардык продуктыларды көрүү"
+
+#: templates/main/calculator.html:11
+msgid "Get an Instant Cost Estimate"
+msgstr "Дароо баа алуу"
+
+#: templates/main/calculator.html:13
+msgid "Calculate your ceiling project cost in seconds. Just enter your room dimensions and select your preferred ceiling type."
+msgstr "Сиздин потолок долбооруңуздун баасын бир нече секундда эсептеңиз. Сиздин бөлмөңүздүн өлчөмдөрүн киргизип, каалаган потолок түрүн тандаңыз."
+
+#: templates/main/calculator.html:26
+msgid "Project Details"
+msgstr "Долбоордун деталдары"
+
+#: templates/main/calculator.html:34
+msgid "Room Width (meters)"
+msgstr "Бөлмөнүн туурасы (метр)"
+
+#: templates/main/calculator.html:40
+msgid "Room Length (meters)"
+msgstr "Бөлмөнүн узундугу (метр)"
+
+#: templates/main/calculator.html:48
+msgid "Select Ceiling Type"
+msgstr "Потолок түрүн тандаңыз"
+
+#: templates/main/calculator.html:65
+msgid "Estimated Cost"
+msgstr "Жалпы баа"
+
+#: templates/main/calculator.html:72
+msgid "Area"
+msgstr "Аянт"
+
+#: templates/main/calculator.html:78
+msgid "Price per m²"
+msgstr "Баасы м² үчүн"
+
+#: templates/main/calculator.html:84
+msgid "Total Cost"
+msgstr "Жалпы баа"
+
+#: templates/main/calculator.html:92
+msgid "This is a preliminary estimate. Final pricing may vary based on specific requirements and installation complexity."
+msgstr "Бул алдын ала баа. Акыркы баа конкреттүү талаптарга жана орнотуу татаалдыгына жараша өзгөрүшү мүмкүн."
+
+#: templates/main/calculator.html:97
+msgid "Request Detailed Quote"
+msgstr "Туура баа сураңыз"
+
+#: templates/main/contact.html:12
+msgid "Ready to Start Your Project?"
+msgstr "Сиздин долбооруңузду баштоого даярсызбы?"
+
+#: templates/main/contact.html:15
+msgid "Fill out the form below and our expert will contact you shortly with a detailed quote tailored to your specific needs."
+msgstr "Төмөнкү форманы толтуруңуз, биздин адис сиздин конкреттүү муктаждыктарыңызга ылайык келген так баа менен жакын арада байланышат."
+
+#: templates/main/contact.html:25
+msgid "Send us a message"
+msgstr "Бизге билдирүү жөнөтүңүз"
+
+#: templates/main/contact.html:34
+msgid "Your Name *"
+msgstr "Сиздин атыңыз *"
+
+#: templates/main/contact.html:41
+msgid "Phone Number *"
+msgstr "Телефон номери *"
+
+#: templates/main/contact.html:48
+msgid "Email Address *"
+msgstr "Электрондук почта *"
+
+#: templates/main/contact.html:55
+msgid "Your Message *"
+msgstr "Сиздин билдирүү *"
+
+#: templates/main/contact.html:63
+msgid "Submit Inquiry"
+msgstr "Суранычты жөнөтүү"
+
+#: templates/main/contact.html:81
+msgid "Visit Our Office"
+msgstr "Биздин кеңсеге барыңыз"
+
+#: templates/main/contact.html:94
+msgid "Call Us"
+msgstr "Бизге чалыңыз"
+
+#: templates/main/contact.html:06
+msgid "Free consultation"
+msgstr "Тегин кеңеш"
+
+#: templates/main/contact.html:107
+msgid "Email Us"
+msgstr "Бизге электрондук почта жөнөтүңүз"
+
+#: templates/main/contact.html:109
+msgid "Quick response guaranteed"
+msgstr "Жылдам жооп кепилденет"
+

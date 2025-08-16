@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load i18n %}
 {% block title %}Cost Calculator - Ceiling Solutions KG{% endblock %}
 
 {% block content %}
@@ -8,9 +8,9 @@
     <div class="row">
         <div class="col-lg-8 mx-auto">
             <div class="text-center mb-5">
-                <h1 class="display-5 fw-bold mb-3">Get an Instant Cost Estimate</h1>
+                <h1 class="display-5 fw-bold mb-3">{% trans "Get an Instant Cost Estimate" %}</h1>
                 <p class="lead text-muted">
-                    Calculate your ceiling project cost in seconds. Just enter your room dimensions and select your preferred ceiling type.
+                    {% trans "Calculate your ceiling project cost in seconds. Just enter your room dimensions and select your preferred ceiling type." %}
                 </p>
             </div>
             
@@ -23,7 +23,7 @@
                             <div class="col-12">
                                 <h5 class="fw-bold mb-3">
                                     <i class="fas fa-ruler-combined me-2 text-primary"></i>
-                                    Project Details
+                                    {% trans "Project Details" %}
                                 </h5>
                             </div>
                         </div>
@@ -31,13 +31,13 @@
                         <div class="row g-3 mb-4">
                             <div class="col-md-6">
                                 <label for="{{ form.width.id_for_label }}" class="form-label fw-semibold">
-                                    Room Width (meters)
+                                    {% trans "Room Width (meters)" %}
                                 </label>
                                 {{ form.width }}
                             </div>
                             <div class="col-md-6">
                                 <label for="{{ form.length.id_for_label }}" class="form-label fw-semibold">
-                                    Room Length (meters)
+                                    {% trans "Room Length (meters)" %}
                                 </label>
                                 {{ form.length }}
                             </div>
@@ -45,14 +45,14 @@
 
                         <div class="mb-4">
                             <label for="{{ form.ceiling_type.id_for_label }}" class="form-label fw-semibold">
-                                Select Ceiling Type
+                                {% trans "Select Ceiling Type" %}
                             </label>
                             {{ form.ceiling_type }}
                         </div>
 
                         <button type="submit" onclick="console.log('clicked');" class="btn btn-primary btn-lg w-100 mb-4">
                             <i class="fas fa-calculator me-2"></i>
-                            Calculate Cost
+                            {%  trans "Calculate Cost" %}
                         </button>
                     </form>
                     <!-- Results Section -->
@@ -62,27 +62,27 @@
                                 <div class="col-12">
                                     <h5 class="fw-bold mb-3">
                                         <i class="fas fa-chart-line me-2"></i>
-                                        Estimated Cost
+                                        {% trans "Estimated Cost" %}
                                     </h5>
                                 </div>
                             </div>
                             <div class="row g-3">
                                 <div class="col-md-4">
                                     <div class="result-item">
-                                        <span class="result-label">Area:</span>
+                                        <span class="result-label">{% trans "Area" %}:</span>
                                         <span id="areaResult" class="result-value">0 m²</span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="result-item">
-                                        <span class="result-label">Price per m²:</span>
-                                        <span id="pricePerSqmResult" class="result-value">$0</span>
+                                        <span class="result-label">{% trans "Price per m²" %}:</span>
+                                        <span id="pricePerSqmResult" class="result-value">0 KGS</span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="result-item">
-                                        <span class="result-label">Total Cost:</span>
-                                        <span id="totalCostResult" class="result-value fw-bold">$0</span>
+                                        <span class="result-label">{% trans "Total Cost" %}:</span>
+                                        <span id="totalCostResult" class="result-value fw-bold">0 KGS</span>
                                     </div>
                                 </div>
                             </div>
@@ -90,11 +90,11 @@
                         
                         <div class="text-center">
                             <p class="text-muted small mb-3">
-                                This is a preliminary estimate. Final pricing may vary based on specific requirements and installation complexity.
+                                {% trans "This is a preliminary estimate. Final pricing may vary based on specific requirements and installation complexity." %}
                             </p>
                             <a href="{% url 'contact' %}" class="btn btn-outline-primary">
                                 <i class="fas fa-file-alt me-2"></i>
-                                Request Detailed Quote
+                                {% trans "Request Detailed Quote" %}
                             </a>
                         </div>
                     </div>

@@ -12,11 +12,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Custom CSS -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="icon" type="image/png" href="/media/website_images/ico.png">
@@ -117,11 +114,11 @@
                     <h5 class="fw-bold mb-3">{% translate 'Contact Info' %}</h5>
                     <p class="text-muted mb-2">
                         <i class="fas fa-map-marker-alt me-2"></i>
-                        Bishkek, Kyrgyzstan
+                        {% trans "Bishkek, Kyrgyzstan" %}
                     </p>
                     <p class="text-muted mb-2">
                         <i class="fas fa-phone me-2"></i>
-                        +996 XXX XXX XXX
+                        +996 707 399 766
                     </p>
                     <p class="text-muted mb-2">
                         <i class="fas fa-envelope me-2"></i>
@@ -129,14 +126,14 @@
                     </p>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <h5 class="fw-bold mb-3">Office Hours</h5>
-                    <p class="text-muted">Monday - Friday: 9:00 - 18:00</p>
+                    <h5 class="fw-bold mb-3">{% trans "Office Hours" %}</h5>
+                    <p class="text-muted">{% trans "Monday - Friday: 9:00 - 18:00" %}</p>
                 </div>
             </div>
             <hr class="my-4">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <p class="text-muted mb-0">&copy; 2025 Armstrong. All rights reserved.</p>
+                    <p class="text-muted mb-0">&copy; {% trans "2025 Armstrong. All rights reserved." %}</p>
                 </div>
             </div>
         </div>

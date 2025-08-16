@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}Contact Us - Ceiling Solutions KG{% endblock %}
 
@@ -8,9 +9,9 @@
     <div class="row">
         <div class="col-lg-8 mx-auto">
             <div class="text-center mb-5">
-                <h1 class="display-5 fw-bold mb-3">Ready to Start Your Project?</h1>
+                <h1 class="display-5 fw-bold mb-3">{% trans "Ready to Start Your Project?" %}</h1>
                 <p class="lead text-muted">
-                    Fill out the form below and our expert will contact you shortly with a detailed quote tailored to your specific needs.
+                    {% trans "Fill out the form below and our expert will contact you shortly with a detailed quote tailored to your specific needs." %}
                 </p>
             </div>
             
@@ -21,7 +22,7 @@
                         <div class="card-body p-4">
                             <h5 class="fw-bold mb-4">
                                 <i class="fas fa-envelope me-2 text-primary"></i>
-                                Send us a message
+                                {% trans "Send us a message" %}
                             </h5>
                             
                             <form method="post">
@@ -30,28 +31,28 @@
                                 <div class="row g-3">
                                     <div class="col-12">
                                         <label for="{{ form.name.id_for_label }}" class="form-label fw-semibold">
-                                            Your Name *
+                                            {% trans "Your Name *" %}
                                         </label>
                                         {{ form.name }}
                                     </div>
                                     
                                     <div class="col-md-6">
                                         <label for="{{ form.phone.id_for_label }}" class="form-label fw-semibold">
-                                            Phone Number *
+                                            {% trans "Phone Number *" %}
                                         </label>
                                         {{ form.phone }}
                                     </div>
                                     
                                     <div class="col-md-6">
                                         <label for="{{ form.email.id_for_label }}" class="form-label fw-semibold">
-                                            Email Address *
+                                            {% trans "Email Address *" %}
                                         </label>
                                         {{ form.email }}
                                     </div>
                                     
                                     <div class="col-12">
                                         <label for="{{ form.message.id_for_label }}" class="form-label fw-semibold">
-                                            Your Message *
+                                            {% trans "Your Message *" %}
                                         </label>
                                         {{ form.message }}
                                     </div>
@@ -59,7 +60,7 @@
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-primary btn-lg w-100">
                                             <i class="fas fa-paper-plane me-2"></i>
-                                            Submit Inquiry
+                                            {% trans "Submit Inquiry" %}
                                         </button>
                                     </div>
                                 </div>
@@ -77,9 +78,9 @@
                                     <div class="contact-icon mb-3">
                                         <i class="fas fa-map-marker-alt fa-2x text-primary"></i>
                                     </div>
-                                    <h6 class="fw-bold">Visit Our Office</h6>
-                                    <p class="text-muted mb-2">Bishkek, Kyrgyzstan</p>
-                                    <small class="text-muted">Office hours: 9:00 - 18:00</small>
+                                    <h6 class="fw-bold">{% trans "Visit Our Office" %}</h6>
+                                    <p class="text-muted mb-2">{% trans "Bishkek, Kyrgyzstan" %}</p>
+                                    <small class="text-muted">{% trans "Office Hours" %}: 9:00 - 18:00</small>
                                 </div>
                             </div>
                         </div>
@@ -90,9 +91,9 @@
                                     <div class="contact-icon mb-3">
                                         <i class="fas fa-phone fa-2x text-primary"></i>
                                     </div>
-                                    <h6 class="fw-bold">Call Us</h6>
-                                    <p class="text-muted mb-2">+996 XXX XXX XXX</p>
-                                    <small class="text-muted">Free consultation</small>
+                                    <h6 class="fw-bold">{% trans "Call Us" %}</h6>
+                                    <p class="text-muted mb-2">+996 707 399 766</p>
+                                    <small class="text-muted">{% trans "Free consultation" %}</small>
                                 </div>
                             </div>
                         </div>
@@ -103,9 +104,9 @@
                                     <div class="contact-icon mb-3">
                                         <i class="fas fa-envelope fa-2x text-primary"></i>
                                     </div>
-                                    <h6 class="fw-bold">Email Us</h6>
+                                    <h6 class="fw-bold">{% trans "Email Us" %}</h6>
                                     <p class="text-muted mb-2">info@armstrong.kg</p>
-                                    <small class="text-muted">Quick response guaranteed</small>
+                                    <small class="text-muted">{% trans "Quick response guaranteed" %}</small>
                                 </div>
                             </div>
                         </div>

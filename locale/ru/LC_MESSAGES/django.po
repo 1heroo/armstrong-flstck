@@ -90,9 +90,30 @@ msgstr "Получите мгновенную оценку стоимости в
 msgid "Get Your Estimate Now"
 msgstr "Получите оценку сейчас"
 
-#: templates/base.html: 117
+#: templates/base.html: 111
+msgid "High-quality ceiling solutions in Kyrgyzstan for commercial and residential spaces."
+msgstr "Высококачественные потолочные решения в Кыргызстане для коммерческих и жилых помещений."
+
+#: templates/base.html: 114
 msgid "Contact Info"
 msgstr "Контактная информация"
+
+#: templates/base.html: 117
+msgid "Bishkek, Kyrgyzstan"
+msgstr "Бишкек, Кыргызстан"
+
+#: templates/base.html: 129
+msgid "Office Hours"
+msgstr "Часы работы"
+
+#: templates/base.html: 130
+msgid "Monday - Friday: 9:00 - 18:00"
+msgstr "Понедельник - Пятница: 9:00 - 18:00"
+
+#: templates/base.html: 136
+msgid "2025 Armstrong. All rights reserved."
+msgstr "2025 Armstrong. Все права защищены."
+
 
 #: templates/main/product_detail.html:61
 msgid "Price"
@@ -126,7 +147,104 @@ msgstr "Изучите наш полный ассортимент потолоч
 msgid "View All Products"
 msgstr "Посмотреть все продукты"
 
+#: templates/main/calculator.html:11
+msgid "Get an Instant Cost Estimate"
+msgstr "Получите мгновенную оценку стоимости"
+
+#: templates/main/calculator.html:13
+msgid "Calculate your ceiling project cost in seconds. Just enter your room dimensions and select your preferred ceiling type."
+msgstr "Рассчитайте стоимость вашего потолочного проекта за считанные секунды. Просто введите размеры вашей комнаты и выберите предпочитаемый тип потолка."
+
+#: templates/main/calculator.html:26
+msgid "Project Details"
+msgstr "Детали проекта"
+
+#: templates/main/calculator.html:34
+msgid "Room Width (meters)"
+msgstr "Ширина комнаты (метры)"
+
+#: templates/main/calculator.html:40
+msgid "Room Length (meters)"
+msgstr "Длина комнаты (метры)"
+
+#: templates/main/calculator.html:48
+msgid "Select Ceiling Type"
+msgstr "Выберите тип потолка"
+
+#: templates/main/calculator.html:65
+msgid "Estimated Cost"
+msgstr "Ориентировочная стоимость"
+
+#: templates/main/calculator.html:72
+msgid "Area"
+msgstr "Площадь"
+
+#: templates/main/calculator.html:78
+msgid "Price per m²"
+msgstr "Цена за м²"
+
+#: templates/main/calculator.html:84
+msgid "Total Cost"
+msgstr "Общая стоимость"
+
+#: templates/main/calculator.html:92
+msgid "This is a preliminary estimate. Final pricing may vary based on specific requirements and installation complexity."
+msgstr "Это предварительная оценка. Окончательная цена может варьироваться в зависимости от конкретных требований и сложности установки."
+
+#: templates/main/calculator.html:97
+msgid "Request Detailed Quote"
+msgstr "Запросить подробное предложение"
 
 
+#: templates/main/contact.html:12
+msgid "Ready to Start Your Project?"
+msgstr "Готовы начать ваш проект?"
 
+#: templates/main/contact.html:15
+msgid "Fill out the form below and our expert will contact you shortly with a detailed quote tailored to your specific needs."
+msgstr "Заполните форму ниже, и наш эксперт свяжется с вами в ближайшее время с подробным предложением, адаптированным к вашим конкретным потребностям."
+
+#: templates/main/contact.html:25
+msgid "Send us a message"
+msgstr "Отправьте нам сообщение"
+
+#: templates/main/contact.html:34
+msgid "Your Name *"
+msgstr "Ваше имя *"
+
+#: templates/main/contact.html:41
+msgid "Phone Number *"
+msgstr "Номер телефона *"
+
+#: templates/main/contact.html:48
+msgid "Email Address *"
+msgstr "Адрес электронной почты *"
+
+#: templates/main/contact.html:55
+msgid "Your Message *"
+msgstr "Ваше сообщение *"
+
+#: templates/main/contact.html:63
+msgid "Submit Inquiry"
+msgstr "Отправить запрос"
+
+#: templates/main/contact.html:81
+msgid "Visit Our Office"
+msgstr "Посетите наш офис"
+
+#: templates/main/contact.html:94
+msgid "Call Us"
+msgstr "Позвоните нам"
+
+#: templates/main/contact.html:06
+msgid "Free consultation"
+msgstr "Бесплатная консультация"
+
+#: templates/main/contact.html:107
+msgid "Email Us"
+msgstr "Напишите нам"
+
+#: templates/main/contact.html:109
+msgid "Quick response guaranteed"
+msgstr "Гарантированный быстрый ответ"
 
