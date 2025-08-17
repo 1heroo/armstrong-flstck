@@ -43,8 +43,12 @@ msgid "Contact"
 msgstr "Байланыш"
 
 #: templates/main/home.html:15
-msgid "Modern Ceilings, Engineered for Excellence."
-msgstr "Заманбап потолоктор, мыкты сапатка жасалган."
+msgid "Welcome to Armstrong.kg world"
+msgstr "Armstrong.kg дүйнөсүнө кош келиңиз"
+
+#: templates/main/home.html:18
+msgid "High-quality ceiling solutions in Kyrgyzstan for commercial and residential spaces."
+msgstr "Кыргызстанда коммерциялык жана турак жайлар үчүн жогорку сапаттагы потолок чечимдери."
 
 #: templates/main/home.html:22
 msgid "Calculate Your Cost"
@@ -59,11 +63,8 @@ msgid "Our Product Range"
 msgstr "Биздин продукциябыз"
 
 #: templates/main/home.html:41
-msgid ""
-"Discover our comprehensive collection of premium ceiling solutions, designed "
-"to meet the highest standards of quality and aesthetics."
-msgstr ""
-"Сапат жана эстетика боюнча эң жогорку стандарттарга жооп берүү үчүн иштелип чыккан премиум Потолок чечимидернин толук коллекциясы менен тааныш болуңуз."
+msgid "Full range of Armstrong suspension systems and components. Favorable terms of wholesale deliveries - from small orders to large projects."
+msgstr "Armstrong асма системаларынын жана компоненттеринин толук ассортиментин сунуштайбыз. Чакан заказдардан баштап ири долбоорлорго чейин соода шарттары."
 
 #: templates/main/home.html:64
 msgid "Learn More"
@@ -82,8 +83,8 @@ msgid "Get Your Estimate Now"
 msgstr "Бааңызды азыр алыңыз"
 
 #: templates/base.html: 111
-msgid "High-quality ceiling solutions in Kyrgyzstan for commercial and residential spaces."
-msgstr "Кыргызстанда коммерциялык жана турак жайлар үчүн жогорку сапаттагы потолок чечимдери."
+msgid "Where ceilings become space, and space becomes style. Our experience, scale of supply and in-house production form solutions that others follow."
+msgstr "Потолок мейкиндигине, ал эми мейкиндик стилине айланат. Биздин тажрыйбабыз, жеткирүү масштабы жана ички өндүрүш башкаларга ээрчиген чечимдерди түзөт."
 
 #: templates/base.html: 114
 msgid "Contact Info"

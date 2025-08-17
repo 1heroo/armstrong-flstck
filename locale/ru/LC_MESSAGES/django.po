@@ -45,15 +45,13 @@ msgid "Contact"
 msgstr "Контакты"
 
 #: templates/main/home.html:15
-msgid "Modern Ceilings, Engineered for Excellence."
-msgstr "Современные потолки, созданные для превосходства."
+msgid "Welcome to Armstrong.kg world"
+msgstr "Добро пожаловать в мир Armstrong.kg"
+
 
 #: templates/main/home.html:18
-msgid ""
-"High-quality Armstrong in Kyrgyzstan for commercial and residential "
-"spaces."
-msgstr ""
-"Высококачественные потолочные решения в Кыргызстане для коммерческих и жилых помещений."
+msgid "High-quality ceiling solutions in Kyrgyzstan for commercial and residential spaces."
+msgstr "Высококачественные потолочные решения в Кыргызстане для коммерческих и жилых помещений."
 
 #: templates/main/home.html:22
 msgid "Calculate Your Cost"
@@ -68,11 +66,8 @@ msgid "Our Product Range"
 msgstr "Наш ассортимент"
 
 #: templates/main/home.html:41
-msgid ""
-"Discover our comprehensive collection of premium Armstrong, designed "
-"to meet the highest standards of quality and aesthetics."
-msgstr ""
-"Откройте для себя нашу полную коллекцию премиальных потолочных решений, разработанных для соответствия самым высоким стандартам качества и эстетики."
+msgid "Full range of Armstrong suspension systems and components. Favorable terms of wholesale deliveries - from small orders to large projects."
+msgstr "Полный ассортимент подвесных систем Armstrong и комплектующих. Выгодные условия оптовых поставок — от небольших заказов до крупных проектов."
 
 #: templates/main/home.html:64
 msgid "Learn More"
@@ -91,8 +86,8 @@ msgid "Get Your Estimate Now"
 msgstr "Получите оценку сейчас"
 
 #: templates/base.html: 111
-msgid "High-quality ceiling solutions in Kyrgyzstan for commercial and residential spaces."
-msgstr "Высококачественные потолочные решения в Кыргызстане для коммерческих и жилых помещений."
+msgid "Where ceilings become space, and space becomes style. Our experience, scale of supply and in-house production form solutions that others follow."
+msgstr "Там, где потолки превращаются в пространство, а пространство — в стиль. Наш опыт, масштаб поставок и собственное производство формируют решения, на которые равняются другие."
 
 #: templates/base.html: 114
 msgid "Contact Info"
