@@ -125,7 +125,7 @@ msgstr "Описание"
 
 #: templates/main/product_detail.html:76
 msgid "Categories"
-msgstr "Описание"
+msgstr "Категории"
 
 #: templates/main/product_detail.html:85
 msgid "Calculate Cost"
