@@ -63,11 +63,19 @@ def calculator(request):
 
 def contact(request):
     """Contact page with form"""
+    langauge = translation.get_language()
+
+    success_text = {
+        'ru': 'Спасибо за вашу заявку! Мы свяжемся с вами в ближайшее время.',
+        'en': 'Thank you for your inquiry! We will contact you soon.',
+        'ky': 'Сураныч, сиздин кайрылууңуз үчүн рахмат! Биз сиз менен жакын арада байланышабыз.'
+    }.get(langauge, 'Thank you for your inquiry! We will contact you soon.')
+
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Спасибо за вашу заявку! Мы свяжемся с вами в ближайшее время.')
+            messages.success(request, success_text)
             return redirect('contact')
     else:
         form = ContactForm()
