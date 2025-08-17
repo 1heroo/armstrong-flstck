@@ -329,8 +329,15 @@ section {
 }
 
 .alert-success {
-    background: linear-gradient(135deg, var(--success-color) 0%, #146c43 100%);
-    color: white;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+    border-left: 4px solid #28a745;
+    font-weight: 500;
+}
+
+.alert-success .fas {
+    color: #28a745;
 }
 
 /* Language Selector */

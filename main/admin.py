@@ -61,6 +61,7 @@ class ImageForm(forms.ModelForm):
 
 
 
+
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
     extra = 1
@@ -75,6 +76,13 @@ class ProductImageInline(admin.TabularInline):
         return "-"
 
 
+class ProductForm(forms.ModelForm):
+
+    class Meta:
+        model = Product
+        fields = ['price_per_sqm', 'tags']
+
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('id', 'get_name', 'price_per_sqm', 'created_at')
@@ -83,11 +91,17 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ('translations__name', 'tags')
     list_filter = ('translations__language',)
     inlines = [ProductImageInline, ProductTranslationInline]
+    form = ProductForm
 
     def get_name(self, obj):
         translation = obj.translations.first()
         return translation.name if translation else '(Нет перевода)'
     get_name.short_description = 'Name'
+
+    class Meta:
+        verbose_name = "Продукт"
+        verbose_name_plural = "Продукты"
+        ordering = ['-created_at']
 
 
 @admin.register(ContactInquiry)

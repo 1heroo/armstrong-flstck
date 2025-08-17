@@ -24,13 +24,15 @@ class Product(models.Model):
         if not translation:
             translation = self.translations.first()
 
+        images = self.images.all()
+        print(images.count())
         return {
             'id': self.id,
             'name': translation.name if translation else None,
             'description': translation.description if translation else None,
             'price_per_sqm': str(self.price_per_sqm),
-            'image_url': self.image_url,
-            'additional_images': self.images,
+            'image_url': images[0].image_url if images else None,
+            'additional_images': images[1:] if images.count() > 1 else [],
             'tags': self.tags,
         }
 

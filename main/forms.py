@@ -22,7 +22,7 @@ class ContactForm(forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': '+996 XXX XXX XXX',
                 'required': True,
-                'pattern': r'^\+?[1-9]\d{1,14}$'
+                'pattern': r'^(?:\+996|0)\s?\d{2,3}(?:\s?\d{2}){3,4}$'
             }),
             'message': forms.Textarea(attrs={
                 'class': 'form-control',
@@ -31,42 +31,36 @@ class ContactForm(forms.ModelForm):
                 'required': True
             })
         }
-    
+
     def clean_phone(self):
         phone = self.cleaned_data.get('phone')
         if not phone:
             raise ValidationError('Phone number is required.')
-        
-        # Remove all non-digit characters except +
+
+        # Убираем пробелы, скобки, тире и т.д.
         cleaned_phone = re.sub(r'[^\d+]', '', phone)
-        
-        # Check if phone starts with + and has country code
+
+        # Проверяем международный формат (+996XXXYYYZZZ...)
         if cleaned_phone.startswith('+'):
-            # International format validation
-            if not re.match(r'^\+[1-9]\d{6,14}$', cleaned_phone):
+            if not re.match(r'^\+996\d{9}$', cleaned_phone):
                 raise ValidationError(
-                    'Please enter a valid international phone number (e.g., +996707123456)'
+                    'Введите номер в формате +996XXXXXXXXX'
                 )
         else:
-            # Local format validation for Kyrgyzstan
-            if re.match(r'^0[0-9]{9}$', cleaned_phone):
-                # Convert local format to international
+            # Локальный формат: 0XXXXXXXXX или XXXXXXXXX
+            if re.match(r'^0\d{9}$', cleaned_phone):
+                # конвертируем 0XXXXXXXXX → +996XXXXXXXXX
                 cleaned_phone = '+996' + cleaned_phone[1:]
-            elif re.match(r'^[0-9]{9}$', cleaned_phone):
-                # Add country code if missing
+            elif re.match(r'^\d{9}$', cleaned_phone):
+                # конвертируем XXXXXXXXX → +996XXXXXXXXX
                 cleaned_phone = '+996' + cleaned_phone
-            elif not re.match(r'^[1-9]\d{6,14}$', cleaned_phone):
+            else:
                 raise ValidationError(
-                    'Please enter a valid phone number (e.g., +996707123456 or 0707123456)'
+                    'Введите номер в формате +996XXXXXXXXX или 0XXXXXXXXX'
                 )
-        
-        # Additional length validation
-        if len(cleaned_phone) < 7 or len(cleaned_phone) > 16:
-            raise ValidationError(
-                'Phone number must be between 7 and 16 digits long.'
-            )
-        
+
         return cleaned_phone
+
 
 class CalculatorForm(forms.Form):
     width = forms.DecimalField(

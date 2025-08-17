@@ -67,7 +67,7 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Thank you for your inquiry! We will contact you shortly.')
+            messages.success(request, 'Спасибо за вашу заявку! Мы свяжемся с вами в ближайшее время.')
             return redirect('contact')
     else:
         form = ContactForm()
