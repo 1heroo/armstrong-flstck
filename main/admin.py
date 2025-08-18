@@ -1,13 +1,26 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from .models import Product, ContactInquiry, ProductImage, ProductTranslation
+from .models import Product, ContactInquiry, ProductImage, ProductTranslation, ProductType, ProductTypeTranslation
 from django import forms
 
 import requests
 import time
 from ceiling_solutions import settings
 import os
+
+
+class ProductTypeTranslationInline(admin.TabularInline):
+    model = ProductTypeTranslation
+    fields = ('language', 'name')
+    extra = 1
+    
+
+@admin.register(ProductType)
+class ProductTypeAdmin(admin.ModelAdmin):
+    inlines = [ProductTypeTranslationInline]
+
+
 
 class ProductTranslationInline(admin.TabularInline):
     model = ProductTranslation
@@ -60,8 +73,6 @@ class ImageForm(forms.ModelForm):
         return instance
 
 
-
-
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
     extra = 1
@@ -80,7 +91,7 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ['price_per_sqm', 'tags']
+        fields = ['product_type', 'price_per_sqm', 'tags']
 
 
 @admin.register(Product)

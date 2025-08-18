@@ -5,16 +5,27 @@ from decimal import Decimal
 
 from django.utils import translation
 
-from .models import Product, ContactInquiry
+from .models import Product, ContactInquiry, ProductType
 from .forms import ContactForm, CalculatorForm
 
 
 def home(request):
     langauge = translation.get_language()
-    products = Product.objects.all()
-
+    
+    # Получаем все типы продуктов с их продуктами
+    product_types = ProductType.objects.prefetch_related('products__translations', 'products__images').all()
+    
+    # Формируем данные для шаблона
+    product_sections = []
+    for product_type in product_types:
+        if product_type.products.exists():  # Показываем только типы с продуктами
+            section_data = {
+                'type_name': product_type.get_name(langauge),
+                'products': [p.get_translation_json(langauge) for p in product_type.products.all()]
+            }
+            product_sections.append(section_data)
     return render(request, 'main/home.html', {
-        'products': [p.get_translation_json(langauge) for p in products]
+        'product_sections': product_sections
     })
 
 
@@ -56,7 +67,7 @@ def calculator(request):
     products = Product.objects.all()
     return render(request, 'main/calculator.html', {
         'form': form,
-        'products': products,
+        'products': [p.get_translation_json(langauge) for p in products],
         'estimated_cost': estimated_cost
     })
 

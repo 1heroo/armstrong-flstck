@@ -47,7 +47,13 @@
                             <label for="{{ form.ceiling_type.id_for_label }}" class="form-label fw-semibold">
                                 {% trans "Select Ceiling Type" %}
                             </label>
-                            {{ form.ceiling_type }}
+                            <div class="mb-4 animate-up animate-up-delay-2">
+                                <select name="ceiling_type" class="form-control" required id="id_ceiling_type">
+                                    {% for product in products %}
+                                    <option value="{{ product.id }}">{{ product.type_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
                         </div>
 
                         <div class="animate-up animate-up-delay-3">

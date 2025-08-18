@@ -43,31 +43,71 @@
             </div>
         </div>
         
-        <div class="row g-4">
-            {% for product in products %}
-            <div class="col-lg-6 col-xl-4">
-                <div class="card product-card h-100 shadow-sm animate-card">
-                    <div class="card-img-container">
-                        <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
-                    </div>
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">{{ product.name }}</h5>
-                        <p class="card-text text-muted flex-grow-1 description-preview">{{ product.description|linebreaksbr }}</p>
-                        <div class="product-specs mb-6">
-                            <div class="d-flex justify-content-end align-items-center">
-                                 {#  <span class="badge bg-primary">{{ product.weight_per_sqm }} KGS/m²</span>#}
-                                <span class="fw-bold text-success">{{ product.price_per_sqm }} KGS/m²</span>
+        {% if product_sections %}
+        <!-- Product Type Navigation Tabs -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <ul class="nav nav-pills justify-content-center product-tabs" id="productTabs" role="tablist">
+                    {% for section in product_sections %}
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link {% if forloop.first %}active{% endif %}" 
+                                id="tab-{{ forloop.counter }}" 
+                                data-bs-toggle="pill" 
+                                data-bs-target="#section-{{ forloop.counter }}" 
+                                type="button" 
+                                role="tab" 
+                                aria-controls="section-{{ forloop.counter }}" 
+                                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
+                            <i class="fas me-2"></i>{{ section.type_name }}
+                        </button>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <!-- Product Sections Content -->
+        <div class="tab-content" id="productTabsContent">
+            {% for section in product_sections %}
+            <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" 
+                 id="section-{{ forloop.counter }}" 
+                 role="tabpanel" 
+                 aria-labelledby="tab-{{ forloop.counter }}">
+                
+                <div class="row g-4">
+                    {% for product in section.products %}
+                    <div class="col-lg-6 col-xl-4">
+                        <div class="card product-card h-100 shadow-sm animate-card">
+                            <div class="card-img-container">
+                                <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title fw-bold">{{ product.name }}</h5>
+                                <p class="card-text text-muted flex-grow-1 description-preview">{{ product.description|linebreaksbr }}</p>
+                                <div class="product-specs mb-6">
+                                    <div class="d-flex justify-content-end align-items-center">
+                                        <span class="fw-bold text-success">{{ product.price_per_sqm }} KGS/m²</span>
+                                    </div>
+                                </div>
+                                <a href="{% url 'product_detail' product.id %}" class="btn btn-outline-primary">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    {% trans "Learn More" %}
+                                </a>
                             </div>
                         </div>
-                        <a href="{% url 'product_detail' product.id %}" class="btn btn-outline-primary">
-                            <i class="fas fa-info-circle me-2"></i>
-                            {% trans "Learn More" %}
-                        </a>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
             {% endfor %}
         </div>
+        {% else %}
+        <div class="row">
+            <div class="col-12 text-center">
+                <p class="text-muted">{% trans "No products available at the moment." %}</p>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </section>
 
@@ -146,6 +186,60 @@
     text-overflow: ellipsis;
     line-height: 1.5;
     max-height: 6em; /* 4 lines * 1.5 line-height */
+}
+
+.product-section {
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-size: 1.75rem;
+    color: #0d6efd;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.section-title i {
+    color: #0d6efd;
+}
+
+.product-section:last-child {
+    margin-bottom: 2rem;
+}
+
+.product-tabs .nav-link {
+    background-color: transparent;
+    color: #6c757d;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    margin: 0 0.25rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    border: 1px solid #dee2e6;
+}
+
+.product-tabs .nav-link:hover {
+    background-color: #fd7e14 !important;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(253, 126, 20, 0.3);
+    border-color: #fd7e14 !important;
+}
+
+.product-tabs .nav-link.active {
+    background-color: #fd7e14 !important;
+    color: white !important;
+    border-color: #fd7e14 !important;
+}
+
+.product-tabs .nav-link i {
+    transition: transform 0.3s ease;
+}
+
+.product-tabs .nav-link:hover i,
+.product-tabs .nav-link.active i {
+    transform: scale(1.1);
 }
 </style>
 {% endblock %}
