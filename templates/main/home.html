@@ -52,7 +52,7 @@
                     </div>
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold">{{ product.name }}</h5>
-                        <p class="card-text text-muted flex-grow-1">{{ product.description|truncatechars:100 }}</p>
+                        <p class="card-text text-muted flex-grow-1 description-preview">{{ product.description|linebreaksbr }}</p>
                         <div class="product-specs mb-6">
                             <div class="d-flex justify-content-end align-items-center">
                                  {#  <span class="badge bg-primary">{{ product.weight_per_sqm }} KGS/m²</span>#}
@@ -135,6 +135,17 @@
 
 .cta-section {
     background: linear-gradient(135deg, #0d6efd 0%, #0056b3 100%);
+}
+
+.description-preview {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.5;
+    max-height: 6em; /* 4 lines * 1.5 line-height */
 }
 </style>
 {% endblock %}

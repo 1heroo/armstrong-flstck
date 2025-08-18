@@ -67,7 +67,7 @@
             
             <div class="mb-4">
                 <h5 class="fw-bold mb-3">{% trans 'Description' %}</h5>
-                <p class="text-muted">{{ product.description }}</p>
+                <p class="text-muted">{{ product.description|linebreaksbr }}</p>
             </div>
             
             {% if product.tags %}
