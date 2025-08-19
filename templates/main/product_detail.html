@@ -9,7 +9,7 @@
 <div class="container pt-4">
     <nav aria-label="breadcrumb" class="mb-3">
         <ol class="breadcrumb-modern">
-            <li><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
+            <li><a href="{% url 'home' %}">Главная</a></li>
             <li><a href="{% url 'category_detail' category.id %}">{{ category.name }}</a></li>
             <li class="active">{{ product.name }}</li>
         </ol>
@@ -20,7 +20,7 @@
 <div class="product-hero position-relative overflow-hidden">
     <div class="hero-bg-pattern"></div>
     <div class="container py-5">
-        <div class="row min-vh-50">
+        <div class="row align-items-center min-vh-50">
             <!-- Left Column - Image Gallery -->
             <div class="col-lg-7 mb-4">
                 <div class="product-gallery-modern position-relative">
@@ -60,9 +60,9 @@
             </div>
             
             <!-- Right Column - Product Info -->
-            <div class="col-lg-5 d-flex flex-column justify-content-start">
+            <div class="col-lg-5">
                 <!-- Product Title with Accent -->
-                <div class="product-title-section mb-4 mt-0">
+                <div class="product-title-section mb-4">
                     <div class="title-accent"></div>
                     <h1 class="product-title">{{ product.name }}</h1>
                 </div>
@@ -388,13 +388,12 @@ document.addEventListener('DOMContentLoaded', function() {
     list-style: none;
     padding: 0;
     margin: 0;
-    font-size: 1.1rem;
 }
 
 .breadcrumb-modern li {
     display: flex;
     align-items: center;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
 }
 
 .breadcrumb-modern li:not(:last-child)::after {
