@@ -5,126 +5,848 @@
 {% block title %}{{ product.name }} - Ceiling Solutions KG{% endblock %}
 
 {% block content %}
-<div class="container py-5">
-    <div class="row">
-        <div class="col-lg-6 mb-4">
-            <div class="product-gallery">
-                <!-- Main Image -->
-                <div class="main-image-container mb-3">
-                    <img id="mainImage" src="{{ product.image_url }}" class="img-fluid rounded shadow w-100" alt="{{ product.name }}" style="height: 400px; object-fit: cover;">
-                </div>
-                
-                <!-- Thumbnail Gallery -->
-                <div class="thumbnail-gallery">
-                    <div class="row g-2">
-                        <!-- Main product image as first thumbnail -->
-                        <div class="col-3">
-                            <img src="{{ product.image_url }}" class="img-fluid rounded thumbnail-image shadow-sm" alt="{{ product.name }}" onclick="changeMainImage(this.src)" style="height: 80px; object-fit: cover; cursor: pointer;">
-                        </div>
+<!-- Breadcrumb Section -->
+<div class="container pt-4">
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb-modern">
+            <li><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
+            <li><a href="{% url 'category_detail' category.id %}">{{ category.name }}</a></li>
+            <li class="active">{{ product.name }}</li>
+        </ol>
+    </nav>
+</div>
+
+<!-- Hero Section with Floating Elements -->
+<div class="product-hero position-relative overflow-hidden">
+    <div class="hero-bg-pattern"></div>
+    <div class="container py-5">
+        <div class="row min-vh-50">
+            <!-- Left Column - Image Gallery -->
+            <div class="col-lg-7 mb-4">
+                <div class="product-gallery-modern position-relative">
+                    <!-- Main Image -->
+                    <div class="main-image-modern">
+                        <img id="mainImage" src="{{ product.image_url }}" alt="{{ product.name }}" class="img-fluid">
                         
-                        <!-- Additional images -->
-                        {% for image in product.additional_images %}
-                        <div class="col-2">
-                            <img src="{{ image.image_url }}" class="img-fluid rounded thumbnail-image shadow-sm" alt="{{ image.alt_text|default:product.name }}" onclick="changeMainImage(this.src)" style="height: 80px; object-fit: cover; cursor: pointer;">
+                        <!-- Floating Badge -->
+                        {% if product.in_stock %}
+                        <div class="floating-badge">
+                            <div class="badge-content">
+                                <i class="fas fa-check"></i>
+                                {% trans 'In Stock' %}
+                            </div>
                         </div>
-                        {% endfor %}
+                        {% endif %}
                         
-                        {% if product.additional_images.count < 3 %}
-                            <!-- Placeholder thumbnails if less than 4 total images -->
-                            {% for i in "123"|slice:product.additional_images.count %}
-                            <div class="col-3">
-                                <div class="thumbnail-placeholder bg-light rounded d-flex align-items-center justify-content-center" style="height: 80px;">
-                                    <i class="fas fa-camera text-muted"></i>
-                                </div>
+                        <!-- Decorative Elements -->
+                        <div class="image-decoration-1"></div>
+                        <div class="image-decoration-2"></div>
+                    </div>
+                    
+                    <!-- Thumbnail Gallery - Below Main Image -->
+                    <div class="thumbnail-gallery-horizontal">
+                        <div class="thumbnail-scroll-horizontal">
+                            <div class="thumbnail-item active" data-image="{{ product.image_url }}">
+                                <img src="{{ product.image_url }}" alt="{{ product.name }}">
+                            </div>
+                            {% for image in product.additional_images %}
+                            <div class="thumbnail-item" data-image="{{ image }}">
+                                <img src="{{ image }}" alt="{{ image.alt_text|default:product.name }}">
                             </div>
                             {% endfor %}
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-lg-6">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-                    <li class="breadcrumb-item active">{{ product.name }}</li>
-                </ol>
-            </nav>
-            
-            <h1 class="display-5 fw-bold mb-3">{{ product.name }}</h1>
-            
-            <div class="product-specs mb-4">
-                <div class="row g-3">
-                    <div class="col-6">
-                        <div class="spec-card bg-light p-3 rounded">
-                            <h6 class="text-muted mb-1">{% trans 'Price' %}</h6>
-                            <p class="fw-bold text-success mb-0">{{ product.price_per_sqm }} KGS/m²</p>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="mb-4">
-                <h5 class="fw-bold mb-3">{% trans 'Description' %}</h5>
-                <p class="text-muted">{{ product.description|linebreaksbr }}</p>
-            </div>
-            
-            {% if product.tags %}
-            <div class="mb-4">
-                {% load custom_filters %}
-                <h6 class="fw-bold mb-2">{% trans 'Categories' %}</h6>
-                {% for tag in product.tags|split:',' %}
-                    <span class="badge bg-secondary me-2">{{ tag|title }}</span>
-                {% endfor %}
-            </div>
-            {% endif %}
-            
-            <div class="d-flex gap-3">
-                <a href="{% url 'calculator' %}" class="btn btn-primary btn-lg">
-                    <i class="fas fa-calculator me-2"></i>{% trans 'Calculate Cost' %}
-                </a>
-                <a href="{% url 'contact' %}" class="btn btn-outline-primary btn-lg">
-                    <i class="fas fa-envelope me-2"></i>{% trans 'Get Quote' %}
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Related Products Section -->
-    <div class="row mt-5">
-        <div class="col-12">
-            <h3 class="fw-bold mb-4">{% trans 'Related Products' %}</h3>
-            <div class="row g-4">
-                <!-- This would show other products in the same category -->
-                <div class="col-12">
-                    <p class="text-muted">{% trans 'Explore our full range of ceiling solutions.' %}</p>
-                    <a href="{% url 'home' %}#products" class="btn btn-outline-primary">
-                        {% trans 'View All Products' %}
+            <!-- Right Column - Product Info -->
+            <div class="col-lg-5 d-flex flex-column justify-content-start">
+                <!-- Product Title with Accent -->
+                <div class="product-title-section mb-4 mt-0">
+                    <div class="title-accent"></div>
+                    <h1 class="product-title">{{ product.name }}</h1>
+                </div>
+                
+                <!-- Price Card with Modern Design -->
+                <div class="price-card-modern mb-4">
+                    <div class="price-label">{% trans "Price" %}</div>
+                    <div class="price-value">{{ product.price_per_sqm }} <span class="currency">KGS</span></div>
+                    <div class="price-decoration"></div>
+                </div>
+                
+                <!-- Action Buttons with Modern Style -->
+                <div class="action-buttons-modern mb-5">
+                    <a href="{% url 'calculator' %}" class="btn-modern btn-primary-modern">
+                        <i class="fas fa-calculator"></i>
+                        <span>{% trans 'Calculate Cost' %}</span>
+                        <div class="btn-ripple"></div>
+                    </a>
+                    <a href="{% url 'contact' %}" class="btn-modern btn-secondary-modern">
+                        <i class="fas fa-envelope"></i>
+                        <span>{% trans 'Get Quote' %}</span>
+                        <div class="btn-ripple"></div>
                     </a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Content Section with Asymmetric Layout -->
+<div class="product-content-section">
+    <div class="container py-5">
+        <div class="row">
+            <!-- Left Column - Description -->
+            <div class="col-lg-8 mb-5">
+                <div class="content-card-modern description-modern">
+                    <div class="card-header-modern">
+                        <div class="header-icon">
+                            <i class="fas fa-align-left"></i>
+                        </div>
+                        <h3 class="card-title-modern">Описание товара</h3>
+                        <div class="header-decoration"></div>
+                    </div>
+                    <div class="card-content-modern">
+                        {% if product.description %}
+                            <div class="description-text-modern">{{ product.description|linebreaksbr }}</div>
+                        {% else %}
+                            <div class="no-content-state">
+                                <i class="fas fa-file-alt"></i>
+                                <p>Описание товара отсутствует</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column - Characteristics -->
+            <div class="col-lg-4">
+                {% if product.characteristics %}
+                <div class="content-card-modern characteristics-modern sticky-card">
+                    <div class="card-header-modern">
+                        <div class="header-icon">
+                            <i class="fas fa-list-ul"></i>
+                        </div>
+                        <h3 class="card-title-modern">Характеристики</h3>
+                        <div class="header-decoration"></div>
+                    </div>
+                    <div class="card-content-modern">
+                        <div class="characteristics-list-modern">
+                            {% for char in product.characteristics %}
+                            <div class="characteristic-item-modern">
+                                <div class="char-label">{{ char.name }}</div>
+                                <div class="char-connector"></div>
+                                <div class="char-value">{{ char.value }}</div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Related Products Section
+<div class="related-products-section">
+    <div class="container py-5">
+        <div class="section-header-modern text-center mb-5">
+            <div class="section-accent"></div>
+            <h2 class="section-title">Похожие товары</h2>
+            <p class="section-subtitle">Изучите наш полный ассортимент потолочных решений</p>
+        </div>
+        <div class="text-center">
+            <a href="{% url 'category_detail' category.id %}" class="btn-modern btn-outline-modern">
+                <i class="fas fa-arrow-right"></i>
+                <span>Посмотреть все товары</span>
+                <div class="btn-ripple"></div>
+            </a>
+        </div>
+    </div>
+</div> -->
+
+<!-- Floating Quick Actions -->
+<div class="floating-actions">
+    <div class="floating-action-item" data-bs-toggle="tooltip" title="Рассчитать стоимость">
+        <a href="{% url 'calculator' %}">
+            <i class="fas fa-calculator"></i>
+        </a>
+    </div>
+    <div class="floating-action-item" data-bs-toggle="tooltip" title="Связаться с нами">
+        <a href="{% url 'contact' %}">
+            <i class="fas fa-phone"></i>
+        </a>
+    </div>
+</div>
 {% endblock %}
 
-{% block extra_css %}
-<style>
-.product-image-container {
-    position: relative;
-    overflow: hidden;
-    border-radius: 0.5rem;
+{% block extra_js %}
+<script>
+function changeMainImage(src) {
+    const mainImage = document.getElementById('mainImage');
+    if (mainImage) {
+        mainImage.src = src;
+    }
+    
+    // Update active thumbnail
+    document.querySelectorAll('.thumbnail-item').forEach(item => {
+        item.classList.remove('active');
+    });
+    
+    // Find the clicked thumbnail and make it active
+    document.querySelectorAll('.thumbnail-item').forEach(item => {
+        const dataImage = item.getAttribute('data-image');
+        if (dataImage === src) {
+            item.classList.add('active');
+        }
+    });
 }
 
-.spec-card {
-    border: 1px solid #e9ecef;
+// Initialize page functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Add click handlers to thumbnails
+    document.querySelectorAll('.thumbnail-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const imageSrc = this.getAttribute('data-image');
+            if (imageSrc) {
+                changeMainImage(imageSrc);
+            }
+        });
+    });
+    
+    // Initialize tooltips if Bootstrap is available
+    if (typeof bootstrap !== 'undefined') {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    }
+    
+    // Add ripple effect to buttons
+    document.querySelectorAll('.btn-modern').forEach(button => {
+        button.addEventListener('click', function(e) {
+            const ripple = this.querySelector('.btn-ripple');
+            if (ripple) {
+                ripple.style.opacity = '1';
+                ripple.style.transform = 'scale(1)';
+                
+                setTimeout(() => {
+                    ripple.style.opacity = '0';
+                    ripple.style.transform = 'scale(0)';
+                }, 600);
+            }
+        });
+    });
+});
+</script>
+<style>
+/* Hero Section */
+.product-hero {
+    background: linear-gradient(135deg, #fafbfc 0%, #f1f3f4 100%);
+    min-height: 70vh;
+    position: relative;
+}
+
+.hero-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(253, 126, 20, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(253, 126, 20, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Modern Gallery */
+.product-gallery-modern {
+    position: relative;
+    z-index: 2;
+}
+
+.floating-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    animation: float 3s ease-in-out infinite;
+}
+
+.badge-content {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: 50px;
+    box-shadow: 0 8px 32px rgba(40, 167, 69, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+.main-image-modern {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    margin-bottom: 1.5rem;
+    min-height: 500px;
+}
+
+.image-decoration-1,
+.image-decoration-2 {
+    position: absolute;
+    z-index: -1;
+    border-radius: 24px;
+}
+
+.image-decoration-1 {
+    top: -20px;
+    left: -20px;
+    right: 20px;
+    bottom: 20px;
+    background: linear-gradient(135deg, rgba(253, 126, 20, 0.1), rgba(253, 126, 20, 0.05));
+    transform: rotate(-2deg);
+}
+
+.image-decoration-2 {
+    top: 20px;
+    left: 20px;
+    right: -20px;
+    bottom: -20px;
+    background: linear-gradient(135deg, rgba(253, 126, 20, 0.05), rgba(253, 126, 20, 0.1));
+    transform: rotate(2deg);
+}
+
+.main-image-modern img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.main-image-modern:hover .main-product-image {
+    transform: scale(1.05);
+}
+
+/* Horizontal Thumbnail Gallery */
+.thumbnail-gallery-horizontal {
+    margin-top: 1rem;
+}
+
+.thumbnail-scroll-horizontal {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.thumbnail-item {
+    width: 100px;
+    height: 100px;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 3px solid #e9ecef;
+    position: relative;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.thumbnail-item.active {
+    border-color: #fd7e14;
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(253, 126, 20, 0.3);
+}
+
+.thumbnail-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.thumbnail-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Modern Breadcrumb */
+.breadcrumb-modern {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.breadcrumb-modern li {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+}
+
+.breadcrumb-modern li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.5rem;
+    color: #6c757d;
+}
+
+.breadcrumb-modern a {
+    color: #fd7e14;
+    text-decoration: none;
     transition: all 0.3s ease;
 }
 
-.spec-card:hover {
-    border-color: #0d6efd;
-    background-color: #f8f9fa !important;
+.breadcrumb-modern a:hover {
+    color: #e8681a;
+    text-decoration: underline;
+}
+
+.breadcrumb-modern .active {
+    color: #6c757d;
+    font-weight: 500;
+}
+
+/* Product Title */
+.product-title-section {
+    position: relative;
+}
+
+.title-accent {
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #fd7e14, #ff9f43);
+    border-radius: 2px;
+    margin-bottom: 1rem;
+}
+
+.product-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #2c3e50;
+    line-height: 1.2;
+    margin: 0;
+}
+
+/* Modern Price Card */
+.price-card-modern {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border: 1px solid rgba(253, 126, 20, 0.15);
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(253, 126, 20, 0.1);
+}
+
+.price-label {
+    color: #6c757d;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.price-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #fd7e14;
+    line-height: 1;
+    position: relative;
+    z-index: 2;
+}
+
+.currency {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #6c757d;
+}
+
+.price-decoration {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, rgba(253, 126, 20, 0.1), rgba(253, 126, 20, 0.05));
+    border-radius: 50%;
+    z-index: 0;
+}
+
+/* Modern Action Buttons */
+.action-buttons-modern {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.btn-modern {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 2rem;
+    border-radius: 16px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary-modern {
+    background: linear-gradient(135deg, #fd7e14, #ff9f43);
+    color: white;
+    box-shadow: 0 8px 32px rgba(253, 126, 20, 0.3);
+}
+
+.btn-primary-modern:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(253, 126, 20, 0.4);
+    color: white;
+}
+
+.btn-secondary-modern {
+    background: rgba(253, 126, 20, 0.1);
+    color: #fd7e14;
+    border: 2px solid rgba(253, 126, 20, 0.2);
+}
+
+.btn-secondary-modern:hover {
+    background: rgba(253, 126, 20, 0.15);
+    border-color: rgba(253, 126, 20, 0.3);
+    transform: translateY(-2px);
+    color: #fd7e14;
+}
+
+.btn-outline-modern {
+    background: transparent;
+    color: #fd7e14;
+    border: 2px solid #fd7e14;
+}
+
+.btn-outline-modern:hover {
+    background: #fd7e14;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-ripple {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.6s ease;
+}
+
+.btn-modern:active .btn-ripple {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Content Cards */
+.product-content-section {
+    background: #ffffff;
+}
+
+.content-card-modern {
+    background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.4s ease;
+    height: fit-content;
+}
+
+.content-card-modern:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+}
+
+.sticky-card {
+    position: sticky;
+    top: 2rem;
+}
+
+.card-header-modern {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.header-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #fd7e14, #ff9f43);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.25rem;
+    margin-right: 1rem;
+    box-shadow: 0 8px 24px rgba(253, 126, 20, 0.3);
+}
+
+.card-title-modern {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0;
+    flex: 1;
+}
+
+.header-decoration {
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, #fd7e14, #ff9f43);
+    border-radius: 2px;
+    position: absolute;
+    bottom: -10px;
+    left: 66px;
+}
+
+.description-text-modern {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+/* Modern Characteristics */
+.characteristics-list-modern {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.characteristic-item-modern {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.characteristic-item-modern:last-child {
+    border-bottom: none;
+}
+
+.characteristic-item-modern:hover {
+    background: rgba(253, 126, 20, 0.03);
+    border-radius: 12px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
+}
+
+.char-label {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+    min-width: 120px;
+}
+
+.char-connector {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, #fd7e14, transparent);
+    margin: 0 1rem;
+    border-radius: 1px;
+}
+
+.char-value {
+    font-weight: 700;
+    color: #fd7e14;
+    font-size: 0.95rem;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+/* Section Headers */
+.section-header-modern {
+    position: relative;
+}
+
+.section-accent {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #fd7e14, #ff9f43);
+    border-radius: 2px;
+    margin: 0 auto 1.5rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #6c757d;
+    margin: 0;
+}
+
+/* Floating Actions */
+.floating-actions {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.floating-action-item {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #fd7e14, #ff9f43);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(253, 126, 20, 0.4);
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.floating-action-item:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 48px rgba(253, 126, 20, 0.6);
+}
+
+.floating-action-item a {
+    color: white;
+    font-size: 1.25rem;
+    text-decoration: none;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 8px 32px rgba(253, 126, 20, 0.4); }
+    50% { box-shadow: 0 8px 32px rgba(253, 126, 20, 0.6); }
+    100% { box-shadow: 0 8px 32px rgba(253, 126, 20, 0.4); }
+}
+
+.no-content-state {
+    text-align: center;
+    padding: 3rem 0;
+    color: #6c757d;
+}
+
+.no-content-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .main-image-modern {
+        min-height: 350px;
+    }
+    
+    .main-image-modern img {
+        height: 350px;
+    }
+    
+    .thumbnail-scroll-horizontal {
+        justify-content: center;
+        gap: 12px;
+    }
+    
+    .thumbnail-item {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .product-title {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .sticky-card {
+        position: static;
+    }
+    
+    .product-hero {
+        min-height: auto;
+        padding: 2rem 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-image-modern {
+        min-height: 300px;
+    }
+    
+    .main-image-modern img {
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .action-buttons-modern {
+        flex-direction: column;
+    }
+    
+    .btn-modern {
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .characteristic-item-modern {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .char-connector {
+        display: none;
+    }
+    
+    .char-value {
+        text-align: left;
+    }
+    
+    .content-card-modern {
+        padding: 1.5rem;
+    }
+    
+    .floating-actions {
+        right: 1rem;
+        bottom: 1rem;
+    }
+    
+    .floating-action-item {
+        width: 50px;
+        height: 50px;
+    }
 }
 </style>
 {% endblock %}

@@ -121,6 +121,92 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
         });
+        
+        // Price range slider functionality
+        const priceSlider = document.getElementById('priceSlider');
+        const priceRangeFill = document.getElementById('priceRangeFill');
+        const currentPriceMin = document.getElementById('currentPriceMin');
+        const currentPriceMax = document.getElementById('currentPriceMax');
+        const resetPriceRange = document.getElementById('resetPriceRange');
+        
+        if (priceSlider) {
+            const minPrice = parseFloat(priceSlider.min);
+            const maxPrice = parseFloat(priceSlider.max);
+            let currentMin = minPrice;
+            let currentMax = maxPrice;
+            
+            // Update slider display
+            function updateSliderDisplay() {
+                const percentage = ((currentMax - minPrice) / (maxPrice - minPrice)) * 100;
+                if (priceRangeFill) {
+                    priceRangeFill.style.width = percentage + '%';
+                }
+                if (currentPriceMin) currentPriceMin.textContent = Math.round(currentMin);
+                if (currentPriceMax) currentPriceMax.textContent = Math.round(currentMax);
+            }
+            
+            // Initialize display
+            updateSliderDisplay();
+            
+            // Handle slider input
+            priceSlider.addEventListener('input', function() {
+                currentMax = parseFloat(this.value);
+                updateSliderDisplay();
+                filterProducts();
+            });
+            
+            // Reset price range
+            if (resetPriceRange) {
+                resetPriceRange.addEventListener('click', function() {
+                    currentMin = minPrice;
+                    currentMax = maxPrice;
+                    priceSlider.value = maxPrice;
+                    updateSliderDisplay();
+                    filterProducts();
+                });
+            }
+        }
+
+        // Clear filters functionality
+        const clearFiltersBtn = document.getElementById('clearFilters');
+        if (clearFiltersBtn) {
+            clearFiltersBtn.addEventListener('click', function() {
+                // Reset search
+                const searchInput = document.getElementById('productSearch');
+                if (searchInput) {
+                    searchInput.value = '';
+                }
+                
+                // Reset price range slider
+                if (priceSlider) {
+                    const minPrice = parseFloat(priceSlider.min);
+                    const maxPrice = parseFloat(priceSlider.max);
+                    priceSlider.value = maxPrice;
+                    if (priceRangeFill) priceRangeFill.style.width = '100%';
+                    if (currentPriceMin) currentPriceMin.textContent = Math.round(minPrice);
+                    if (currentPriceMax) currentPriceMax.textContent = Math.round(maxPrice);
+                }
+                
+                // Reset all checkboxes
+                const checkboxes = document.querySelectorAll('input[type="checkbox"][data-filter]');
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.value === 'all') {
+                        checkbox.checked = true;
+                    } else {
+                        checkbox.checked = false;
+                    }
+                });
+                
+                // Show all products
+                const products = document.querySelectorAll('.product-item');
+                products.forEach(product => {
+                    product.classList.remove('hidden');
+                });
+                
+                // Update no results message
+                updateNoResultsMessage();
+            });
+        }
     }
     
     // Field validation
@@ -214,6 +300,125 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.style.transform = 'scale(1)';
             });
         });
+    }
+    
+    // Product filtering function
+    function filterProducts() {
+        const searchInput = document.getElementById('productSearch');
+        const priceMinInput = document.getElementById('priceMin');
+        const priceMaxInput = document.getElementById('priceMax');
+        const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+        const priceMin = priceMinInput ? parseFloat(priceMinInput.value) || 0 : 0;
+        const priceMax = priceMaxInput ? parseFloat(priceMaxInput.value) || Infinity : Infinity;
+        
+        // Get active filters
+        const activeFilters = {};
+        const filterCheckboxes = document.querySelectorAll('input[type="checkbox"][data-filter]:checked');
+        
+        filterCheckboxes.forEach(checkbox => {
+            const filterName = checkbox.getAttribute('data-filter');
+            const filterValue = checkbox.value;
+            
+            if (filterValue !== 'all') {
+                if (!activeFilters[filterName]) {
+                    activeFilters[filterName] = [];
+                }
+                activeFilters[filterName].push(filterValue);
+            }
+        });
+        
+        // Filter products
+        const products = document.querySelectorAll('.product-item');
+        let visibleCount = 0;
+        
+        products.forEach(product => {
+            let shouldShow = true;
+            
+            // Search filter
+            if (searchTerm) {
+                const productName = product.querySelector('.product-name')?.textContent.toLowerCase() || '';
+                const productDescription = product.querySelector('.product-description')?.textContent.toLowerCase() || '';
+                const characteristics = Array.from(product.querySelectorAll('[data-characteristic]')).map(el => 
+                    el.textContent.toLowerCase()
+                ).join(' ');
+                
+                const searchableText = `${productName} ${productDescription} ${characteristics}`;
+                if (!searchableText.includes(searchTerm)) {
+                    shouldShow = false;
+                }
+            }
+            
+            // Price filter with slider
+            const priceElement = product.querySelector('.product-price');
+            if (priceElement && shouldShow) {
+                const priceText = priceElement.textContent.replace(/[^\d.]/g, '');
+                const price = parseFloat(priceText) || 0;
+                
+                // Get current slider values
+                const slider = document.getElementById('priceSlider');
+                if (slider) {
+                    const minPrice = parseFloat(slider.min);
+                    const maxPrice = parseFloat(slider.value);
+                    
+                    if (price < minPrice || price > maxPrice) {
+                        shouldShow = false;
+                    }
+                }
+            }
+            
+            // Characteristic filters
+            if (shouldShow) {
+                for (const [filterName, filterValues] of Object.entries(activeFilters)) {
+                    const productCharacteristics = Array.from(product.querySelectorAll(`[data-characteristic="${filterName}"]`));
+                    
+                    if (productCharacteristics.length > 0) {
+                        const hasMatchingCharacteristic = productCharacteristics.some(char => 
+                            filterValues.includes(char.textContent.trim())
+                        );
+                        
+                        if (!hasMatchingCharacteristic) {
+                            shouldShow = false;
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            // Show/hide product
+            if (shouldShow) {
+                product.classList.remove('hidden');
+                visibleCount++;
+            } else {
+                product.classList.add('hidden');
+            }
+        });
+        
+        // Update no results message
+        updateNoResultsMessage();
+    }
+    
+    // Update no results message
+    function updateNoResultsMessage() {
+        const activeTab = document.querySelector('.tab-pane.active');
+        if (!activeTab) return;
+        
+        const products = activeTab.querySelectorAll('.product-item:not(.hidden)');
+        const noResultsMessage = activeTab.querySelector('.no-results-message');
+        
+        if (products.length === 0) {
+            if (!noResultsMessage) {
+                const message = document.createElement('div');
+                message.className = 'no-results-message text-center py-5';
+                message.innerHTML = `
+                    <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                    <h5 class="text-muted">Товары не найдены</h5>
+                    <p class="text-muted">Попробуйте изменить критерии поиска или фильтрации</p>
+                `;
+                activeTab.appendChild(message);
+            }
+        } else if (noResultsMessage) {
+            noResultsMessage.remove();
+        }
     }
 });
 

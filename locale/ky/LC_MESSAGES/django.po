@@ -12,18 +12,18 @@ msgstr ""
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: ky\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-
-msgid "Modern Ceiling Solutions - Kyrgyzstan"
+#: templates/base.html:8 templates/main/home.html:5
+msgid "Modern Armstrong - Kyrgyzstan"
 msgstr "Заманбап Armstrong - Кыргызстан"
 
 #: templates/base.html:30
-msgid "Ceiling Solutions KG"
+msgid "Armstrong KG"
 msgstr "Armstrong КР"
 
 #: templates/base.html:40
@@ -42,67 +42,31 @@ msgstr "Калькулятор"
 msgid "Contact"
 msgstr "Байланыш"
 
-#: templates/main/home.html:15
-msgid "Welcome to Armstrong.kg world"
-msgstr "Armstrong.kg дүйнөсүнө кош келиңиз"
+#: templates/base.html:55
+msgid "Search products..."
+msgstr "Товарларды издөө..."
 
-#: templates/main/home.html:18
-msgid "High-quality ceiling solutions in Kyrgyzstan for commercial and residential spaces."
-msgstr "Кыргызстанда коммерциялык жана турак жайлар үчүн жогорку сапаттагы потолок чечимдери."
-
-#: templates/main/home.html:22
-msgid "Calculate Your Cost"
-msgstr "Баасын эсептөө"
-
-#: templates/main/home.html:25
-msgid "View Our Products"
-msgstr "Продукцияны көрүү"
-
-#: templates/main/home.html:39
-msgid "Our Product Range"
-msgstr "Биздин продукциябыз"
-
-#: templates/main/home.html:41
-msgid "Full range of Armstrong suspension systems and components. Favorable terms of wholesale deliveries - from small orders to large projects."
-msgstr "Armstrong асма системаларынын жана компоненттеринин толук ассортиментин сунуштайбыз. Чакан заказдардан баштап ири долбоорлорго чейин соода шарттары."
-
-#: templates/main/home.html:64
-msgid "Learn More"
-msgstr "Көбүрөөк билүү"
-
-#: templates/main/home.html:79
-msgid "Ready to transform your space?"
-msgstr "Сиздин мейкиндигиңизди өзгөртүүгө даярсызбы?"
-
-#: templates/main/home.html:80
-msgid "Get an instant cost estimate for your ceiling project."
-msgstr "Сиздин потолок долбооруңуз үчүн дароо баа алуу."
-
-#: templates/main/home.html:83
-msgid "Get Your Estimate Now"
-msgstr "Бааңызды азыр алыңыз"
-
-#: templates/base.html: 111
+#: templates/base.html:111
 msgid "Where ceilings become space, and space becomes style. Our experience, scale of supply and in-house production form solutions that others follow."
 msgstr "Потолок мейкиндигине, ал эми мейкиндик стилине айланат. Биздин тажрыйбабыз, жеткирүү масштабы жана ички өндүрүш башкаларга ээрчиген чечимдерди түзөт."
 
-#: templates/base.html: 114
+#: templates/base.html:114
 msgid "Contact Info"
 msgstr "Байланыш маалыматы"
 
-#: templates/base.html: 117
+#: templates/base.html:117
 msgid "Bishkek, Kyrgyzstan"
 msgstr "Бишкек, Кыргызстан"
 
-#: templates/base.html: 129
+#: templates/base.html:129
 msgid "Office Hours"
 msgstr "Иш убактысы"
 
-#: templates/base.html: 130
+#: templates/base.html:130
 msgid "Monday - Friday: 9:00 - 18:00"
 msgstr "Дүйшөмбү - Жума: 9:00 - 18:00"
 
-#: templates/base.html: 136
+#: templates/base.html:136
 msgid "2025 Armstrong. All rights reserved."
 msgstr "2025 Armstrong. Бардык укуктар корголгон."
 
@@ -230,7 +194,7 @@ msgstr "Биздин кеңсеге барыңыз"
 msgid "Call Us"
 msgstr "Бизге чалыңыз"
 
-#: templates/main/contact.html:06
+#: templates/main/contact.html:106
 msgid "Free consultation"
 msgstr "Тегин кеңеш"
 
@@ -241,4 +205,122 @@ msgstr "Бизге электрондук почта жөнөтүңүз"
 #: templates/main/contact.html:109
 msgid "Quick response guaranteed"
 msgstr "Жылдам жооп кепилденет"
+
+#: templates/main/category_detail.html:44 templates/main/search_results.html:19
+msgid "Search products, characteristics, descriptions..."
+msgstr "Товарларды, мүнөздөмөлөрдү, сыпаттамаларды издөө..."
+
+#: templates/main/search_results.html:8
+msgid "Search Results"
+msgstr "Издөөнүн натыйжалары"
+
+
+#: templates/main/search_results.html:29
+msgid "Found: "
+msgstr "Табылган: "
+
+#: templates/main/search_results.html:15
+msgid "Search results for "
+msgstr "Издөөнүн натыйжалары"
+
+#: templates/main/category_detail.html:51
+msgid "Filter by:"
+msgstr "Боюнча чыпкалоо:"
+
+#: templates/main/category_detail.html:61
+msgid "All"
+msgstr "Баары"
+
+#: templates/main/category_detail.html:74
+msgid "Clear"
+msgstr "Тазалоо"
+
+#: templates/main/category_detail.html:145
+msgid "In Stock"
+msgstr "Бар"
+
+#: templates/main/category_detail.html:149
+msgid "Out of Stock"
+msgstr "Жок"
+
+#: templates/main/category_detail.html:158
+msgid "View Details"
+msgstr "Көбүрөөк билүү"
+
+#: templates/main/category_detail.html:159
+msgid "No products found"
+msgstr "Товарлар табылган жок"
+
+#: templates/main/category_detail.html:160
+msgid "Try adjusting your search or filter criteria"
+msgstr "Издөө же чыпкалоо критерийлерин өзгөртүп көрүңүз"
+
+#: templates/main/category_detail.html:170
+msgid "No products available in this category yet."
+msgstr "Бул категорияда азырынча товарлар жок."
+
+#: templates/main/category_detail.html:171
+msgid "Please check back later or contact us for more information."
+msgstr "Кийинчерээк кайра текшериңиз же кошумча маалымат үчүн биз менен байланышыңыз."
+
+#: templates/main/category_detail.html:173
+msgid "Contact Us"
+msgstr "Биз менен байланышыңыз"
+
+#: templates/main/category_detail.html:189
+msgid "Need help choosing the right product?"
+msgstr "Туура товарды тандоодо жардам керекпи?"
+
+#: templates/main/category_detail.html:190
+msgid "Our experts are ready to help you find the perfect ceiling solution for your project."
+msgstr "Биздин адистер сиздин долбооруңуз үчүн мыкты потолок чечимин табууга жардам берүүгө даяр."
+
+#: templates/main/category_detail.html:193
+msgid "Get Estimate"
+msgstr "Баасын эсептөө"
+
+#: templates/main/category_detail.html:196
+msgid "Contact Expert"
+msgstr "Адис менен байланышуу"
+
+#: templates/main/category_detail.html:212
+msgid "About"
+msgstr "Жөнүндө"
+
+#: templates/main/product_detail.html:68
+msgid "Availability"
+msgstr "Жеткиликтүүлүк"
+
+#: templates/main/product_detail.html:88
+msgid "Product Description"
+msgstr "Сүрөттөмө"
+
+#: templates/main/product_detail.html:93
+msgid "Characteristics"
+msgstr "Мүнөздөмөлөр"
+
+#: templates/main/product_detail.html:99
+msgid "No description available for this product."
+msgstr "Бул товар үчүн сүрөттөмө жок."
+
+#: templates/main/home.html:39
+msgid "Our Product Categories"
+msgstr "Биздин товар категориялары"
+
+#: templates/main/home.html:41
+msgid "Explore our complete range of ceiling solutions organized by categories"
+msgstr "Категориялар боюнча уюштурулган потолок чечимдеринин толук ассортиментин изилдеңиз"
+
+#: templates/main/home.html:25
+msgid "View Our Categories"
+msgstr "Биздин категорияларды көрүү"
+
+#: templates/main/home.html:77
+msgid "No categories available at the moment."
+msgstr "Учурда категориялар жеткиликсиз."
+
+#: templates/main/category_detail.html:53
+msgid "Price Range"
+msgstr "Баа диапазону"
+
 

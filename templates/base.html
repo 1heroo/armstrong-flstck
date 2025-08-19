@@ -46,6 +46,21 @@
                         <a class="nav-link" href="{% url 'contact' %}">{% trans "Contact" %}</a>
                     </li>
                     
+                    <!-- Search -->
+                    <li class="nav-item">
+                        <div class="search-container">
+                            <div class="search-icon-wrapper">
+                                <i class="fas fa-search search-icon"></i>
+                                <form action="{% url 'search' %}" method="get" class="search-form">
+                                    <input type="text" name="q" class="search-input" placeholder="{% trans 'Search products...' %}" value="{{ request.GET.q }}">
+                                    <button type="submit" class="search-submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                    
                     <!-- Language Selector -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle language-selector" href="#" role="button" data-bs-toggle="dropdown">

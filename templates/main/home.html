@@ -21,8 +21,8 @@
                         <a href="{% url 'calculator' %}" class="btn btn-primary btn-lg">
                             <i class="fas fa-calculator me-2"></i>{% trans "Calculate Your Cost" %}
                         </a>
-                        <a href="#products" class="btn btn-outline-light btn-lg">
-                            <i class="fas fa-eye me-2"></i>{% trans "View Our Products" %}
+                        <a href="#categories" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-eye me-2"></i>{% trans "View Our Categories" %}
                         </a>
                     </div>
                 </div>
@@ -31,80 +31,50 @@
     </div>
 </section>
 
-<!-- Products Section -->
-<section id="products" class="py-5">
+<!-- Categories Section -->
+<section id="categories" class="py-5">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto text-center mb-5">
-                <h2 class="display-5 fw-bold mb-3 animate-text">{% trans "Our Product Range" %}</h2>
+                <h2 class="display-5 fw-bold mb-3 animate-text">{% trans "Our Product Categories" %}</h2>
                 <p class="lead text-muted animate-text">
-                    {% trans "Full range of Armstrong suspension systems and components. Favorable terms of wholesale deliveries - from small orders to large projects." %}
+                    {% trans "Explore our complete range of ceiling solutions organized by categories" %}
                 </p>
             </div>
         </div>
         
-        {% if product_sections %}
-        <!-- Product Type Navigation Tabs -->
-        <div class="row mb-4">
-            <div class="col-12">
-                <ul class="nav nav-pills justify-content-center product-tabs" id="productTabs" role="tablist">
-                    {% for section in product_sections %}
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link {% if forloop.first %}active{% endif %}" 
-                                id="tab-{{ forloop.counter }}" 
-                                data-bs-toggle="pill" 
-                                data-bs-target="#section-{{ forloop.counter }}" 
-                                type="button" 
-                                role="tab" 
-                                aria-controls="section-{{ forloop.counter }}" 
-                                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
-                            <i class="fas me-2"></i>{{ section.type_name }}
-                        </button>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-
-        <!-- Product Sections Content -->
-        <div class="tab-content" id="productTabsContent">
-            {% for section in product_sections %}
-            <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" 
-                 id="section-{{ forloop.counter }}" 
-                 role="tabpanel" 
-                 aria-labelledby="tab-{{ forloop.counter }}">
-                
-                <div class="row g-4">
-                    {% for product in section.products %}
-                    <div class="col-lg-6 col-xl-4">
-                        <div class="card product-card h-100 shadow-sm animate-card">
-                            <div class="card-img-container">
-                                <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
-                            </div>
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title fw-bold">{{ product.name }}</h5>
-                                <p class="card-text text-muted flex-grow-1 description-preview">{{ product.description|linebreaksbr }}</p>
-                                <div class="product-specs mb-6">
-                                    <div class="d-flex justify-content-end align-items-center">
-                                        <span class="fw-bold text-success">{{ product.price_per_sqm }} KGS/m²</span>
-                                    </div>
+        {% if categories %}
+        <div class="row g-4">
+            {% for category in categories %}
+            <div class="col-lg-4 col-md-6">
+                <a href="{% url 'category_detail' category.id %}" class="text-decoration-none">
+                    <div class="category-card h-100 shadow-sm animate-card">
+                        <div class="category-img-container">
+                            {% if category.image_url %}
+                                <img src="{{ category.image_url }}" class="category-img" alt="{{ category.name }}">
+                            {% else %}
+                                <div class="category-placeholder">
+                                    <i class="fas fa-th-large fa-3x text-primary"></i>
                                 </div>
-                                <a href="{% url 'product_detail' product.id %}" class="btn btn-outline-primary">
-                                    <i class="fas fa-info-circle me-2"></i>
-                                    {% trans "Learn More" %}
-                                </a>
+                            {% endif %}
+                        </div>
+                        <div class="category-overlay">
+                            <div class="category-content">
+                                <h4 class="category-title text-white fw-bold mb-0">{{ category.name }}</h4>
+                                <div class="category-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    {% endfor %}
-                </div>
+                </a>
             </div>
             {% endfor %}
         </div>
         {% else %}
         <div class="row">
             <div class="col-12 text-center">
-                <p class="text-muted">{% trans "No products available at the moment." %}</p>
+                <p class="text-muted">{% trans "No categories available at the moment." %}</p>
             </div>
         </div>
         {% endif %}
@@ -240,6 +210,97 @@
 .product-tabs .nav-link:hover i,
 .product-tabs .nav-link.active i {
     transform: scale(1.1);
+}
+
+/* Category Cards Styles */
+.category-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-height: 300px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.category-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2) !important;
+}
+
+.category-img-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.category-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.category-card:hover .category-img {
+    transform: scale(1.1);
+}
+
+.category-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0d6efd 0%, #0056b3 100%);
+}
+
+.category-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.category-card:hover .category-overlay {
+    background: linear-gradient(to bottom, rgba(253,126,20,0.4) 0%, rgba(253,126,20,0.8) 100%);
+}
+
+.category-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category-title {
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+}
+
+.category-arrow {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.3s ease;
+    font-size: 1.5rem;
+}
+
+.category-card:hover .category-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.category-card:hover .category-title {
+    transform: translateX(-10px);
 }
 </style>
 {% endblock %}

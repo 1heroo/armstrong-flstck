@@ -44,10 +44,95 @@ msgstr "Калькулятор"
 msgid "Contact"
 msgstr "Контакты"
 
+#: templates/base.html:55
+msgid "Search products..."
+msgstr "Поиск товаров..."
+
+#: templates/main/search_results.html:8
+msgid "Search Results"
+msgstr "Результаты поиска"
+
+#: templates/main/search_results.html:15
+msgid "Search results for "
+msgstr "Результаты поиска по запросу "
+
+#: templates/main/search_results.html:17
+msgid "Search Products"
+msgstr "Поиск товаров"
+
+#: templates/main/search_results.html:24
+msgid "Search"
+msgstr "Поиск"
+
+#: templates/main/search_results.html:29
+msgid "Found: "
+msgstr "Найдено: "
+
+
+#: templates/main/search_results.html:108
+#, python-format
+msgid "We couldn't find any products matching \"%(query)s\". Try adjusting your search terms."
+msgstr "Мы не смогли найти товары по запросу \"%(query)s\". Попробуйте изменить условия поиска."
+
+#: templates/main/search_results.html:113
+msgid "Search suggestions:"
+msgstr "Рекомендации по поиску:"
+
+#: templates/main/search_results.html:115
+msgid "Check your spelling"
+msgstr "Проверьте правописание"
+
+#: templates/main/search_results.html:116
+msgid "Try more general terms"
+msgstr "Используйте более общие термины"
+
+#: templates/main/search_results.html:117
+msgid "Use different keywords"
+msgstr "Используйте другие ключевые слова"
+
+#: templates/main/search_results.html:118
+msgid "Browse our product categories"
+msgstr "Просмотрите наши категории товаров"
+
+#: templates/main/search_results.html:122
+msgid "Browse All Products"
+msgstr "Просмотреть все товары"
+
+#: templates/main/search_results.html:131
+msgid "Search Our Products"
+msgstr "Поиск наших товаров"
+
+#: templates/main/search_results.html:133
+msgid "Find the perfect ceiling solution by searching through our comprehensive catalog."
+msgstr "Найдите идеальное потолочное решение, выполнив поиск в нашем обширном каталоге."
+
+#: templates/main/search_results.html:139
+msgid "Multi-language Search"
+msgstr "Многоязычный поиск"
+
+#: templates/main/search_results.html:140
+msgid "Search in English, Russian, or Kyrgyz"
+msgstr "Поиск на английском, русском или кыргызском языке"
+
+#: templates/main/search_results.html:145
+msgid "Detailed Search"
+msgstr "Детальный поиск"
+
+#: templates/main/search_results.html:146
+msgid "Search by characteristics and specifications"
+msgstr "Поиск по характеристикам и спецификациям"
+
+#: templates/main/search_results.html:151
+msgid "Smart Filtering"
+msgstr "Умная фильтрация"
+
+#: templates/main/search_results.html:152
+msgid "Find products by tags and categories"
+msgstr "Поиск товаров по тегам и категориям"
+
 #: templates/main/home.html:15
 msgid "Welcome to Armstrong.kg world"
 msgstr "Добро пожаловать в мир Armstrong.kg"
-
 
 #: templates/main/home.html:18
 msgid "High-quality ceiling solutions in Kyrgyzstan for commercial and residential spaces."
@@ -58,8 +143,8 @@ msgid "Calculate Your Cost"
 msgstr "Рассчитать стоимость"
 
 #: templates/main/home.html:25
-msgid "View Our Products"
-msgstr "Посмотреть продукцию"
+msgid "View Our Categories"
+msgstr "Посмотреть категории"
 
 #: templates/main/home.html:39
 msgid "Our Product Range"
@@ -85,30 +170,29 @@ msgstr "Получите мгновенную оценку стоимости в
 msgid "Get Your Estimate Now"
 msgstr "Получите оценку сейчас"
 
-#: templates/base.html: 111
+#: templates/base.html:111
 msgid "Where ceilings become space, and space becomes style. Our experience, scale of supply and in-house production form solutions that others follow."
 msgstr "Там, где потолки превращаются в пространство, а пространство — в стиль. Наш опыт, масштаб поставок и собственное производство формируют решения, на которые равняются другие."
 
-#: templates/base.html: 114
+#: templates/base.html:114
 msgid "Contact Info"
 msgstr "Контактная информация"
 
-#: templates/base.html: 117
+#: templates/base.html:117
 msgid "Bishkek, Kyrgyzstan"
 msgstr "Бишкек, Кыргызстан"
 
-#: templates/base.html: 129
+#: templates/base.html:129
 msgid "Office Hours"
 msgstr "Часы работы"
 
-#: templates/base.html: 130
+#: templates/base.html:130
 msgid "Monday - Friday: 9:00 - 18:00"
 msgstr "Понедельник - Пятница: 9:00 - 18:00"
 
-#: templates/base.html: 136
+#: templates/base.html:136
 msgid "2025 Armstrong. All rights reserved."
 msgstr "2025 Armstrong. Все права защищены."
-
 
 #: templates/main/product_detail.html:61
 msgid "Price"
@@ -231,7 +315,7 @@ msgstr "Посетите наш офис"
 msgid "Call Us"
 msgstr "Позвоните нам"
 
-#: templates/main/contact.html:06
+#: templates/main/contact.html:106
 msgid "Free consultation"
 msgstr "Бесплатная консультация"
 
@@ -242,4 +326,109 @@ msgstr "Напишите нам"
 #: templates/main/contact.html:109
 msgid "Quick response guaranteed"
 msgstr "Гарантированный быстрый ответ"
+
+#: templates/main/category_detail.html:44 templates/main/search_results.html:19
+msgid "Search products, characteristics, descriptions..."
+msgstr "Поиск товаров, характеристик, описаний..."
+
+#: templates/main/category_detail.html:51
+msgid "Filter by:"
+msgstr "Фильтровать по:"
+
+#: templates/main/category_detail.html:61
+msgid "All"
+msgstr "Все"
+
+#: templates/main/category_detail.html:74
+msgid "Clear"
+msgstr "Очистить"
+
+#: templates/main/category_detail.html:145
+msgid "In Stock"
+msgstr "В наличии"
+
+#: templates/main/category_detail.html:149
+msgid "Out of Stock"
+msgstr "Нет в наличии"
+
+#: templates/main/category_detail.html:158
+msgid "View Details"
+msgstr "Подробнее"
+
+#: templates/main/category_detail.html:159
+msgid "No products found"
+msgstr "Товары не найдены"
+
+#: templates/main/category_detail.html:160
+msgid "Try adjusting your search or filter criteria"
+msgstr "Попробуйте изменить критерии поиска или фильтрации"
+
+#: templates/main/category_detail.html:170
+msgid "No products available in this category yet."
+msgstr "В этой категории пока нет доступных товаров."
+
+#: templates/main/category_detail.html:171
+msgid "Please check back later or contact us for more information."
+msgstr "Пожалуйста, зайдите позже или свяжитесь с нами для получения дополнительной информации."
+
+#: templates/main/category_detail.html:173
+msgid "Contact Us"
+msgstr "Связаться с нами"
+
+#: templates/main/category_detail.html:189
+msgid "Need help choosing the right product?"
+msgstr "Нужна помощь в выборе подходящего товара?"
+
+#: templates/main/category_detail.html:190
+msgid "Our experts are ready to help you find the perfect ceiling solution for your project."
+msgstr "Наши эксперты готовы помочь вам найти идеальное потолочное решение для вашего проекта."
+
+#: templates/main/category_detail.html:193
+msgid "Get Estimate"
+msgstr "Рассчитать стоимость"
+
+#: templates/main/category_detail.html:196
+msgid "Contact Expert"
+msgstr "Связаться с экспертом"
+
+#: templates/main/category_detail.html:212
+msgid "About"
+msgstr "О категории"
+
+#: templates/main/product_detail.html:68
+msgid "Availability"
+msgstr "Наличие"
+
+#: templates/main/product_detail.html:88
+msgid "Product Description"
+msgstr "Описание"
+
+#: templates/main/product_detail.html:93
+msgid "Characteristics"
+msgstr "Характеристики"
+
+#: templates/main/product_detail.html:99
+msgid "No description available for this product."
+msgstr "Описание для этого товара недоступно."
+
+#: templates/main/home.html:39
+msgid "Our Product Categories"
+msgstr "Наши категории товаров"
+
+#: templates/main/home.html:41
+msgid "Explore our complete range of ceiling solutions organized by categories"
+msgstr "Изучите наш полный ассортимент потолочных решений, организованных по категориям"
+
+#: templates/main/home.html:25
+msgid "Browse Categories"
+msgstr "Посмотреть наши категории"
+
+#: templates/main/home.html:77
+msgid "No categories available at the moment."
+msgstr "В данный момент категории недоступны."
+
+#: templates/main/category_detail.html:53
+msgid "Price Range"
+msgstr "Диапазон цен"
+
 
