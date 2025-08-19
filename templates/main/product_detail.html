@@ -5,102 +5,86 @@
 {% block title %}{{ product.name }} - Ceiling Solutions KG{% endblock %}
 
 {% block content %}
-<!-- Breadcrumb Navigation -->
-<section class="breadcrumb-section">
-    <div class="container pt-4">
-        <nav aria-label="breadcrumb" class="mb-3">
-            <ol class="breadcrumb-modern">
-                <li><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
-                <li><a href="{% url 'category_detail' category.id %}">{{ category.name }}</a></li>
-                <li class="active">{{ product.name }}</li>
-            </ol>
-        </nav>
-    </div>
-</section>
+<!-- Breadcrumb Section -->
+<div class="container pt-4">
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb-modern">
+            <li><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
+            <li><a href="{% url 'category_detail' category.id %}">{{ category.name }}</a></li>
+            <li class="active">{{ product.name }}</li>
+        </ol>
+    </nav>
+</div>
 
-<!-- Product Hero Section -->
-<section class="product-hero position-relative overflow-hidden">
+<!-- Hero Section with Floating Elements -->
+<div class="product-hero position-relative overflow-hidden">
     <div class="hero-bg-pattern"></div>
     <div class="container py-5">
         <div class="row min-vh-50">
-            <!-- Product Gallery -->
+            <!-- Left Column - Image Gallery -->
             <div class="col-lg-7 mb-4">
                 <div class="product-gallery-modern position-relative">
-                    <!-- Main Product Image -->
-                    <div class="main-image-container">
-                        <img id="mainImage" 
-                             src="{{ product.image_url }}" 
-                             alt="{{ product.name }}" 
-                             class="main-product-image img-fluid">
+                    <!-- Main Image -->
+                    <div class="main-image-modern">
+                        <img id="mainImage" src="{{ product.image_url }}" alt="{{ product.name }}" class="img-fluid">
                         
-                        <!-- Stock Status Badge -->
+                        <!-- Floating Badge -->
                         {% if product.in_stock %}
-                        <div class="stock-badge">
+                        <div class="floating-badge">
                             <div class="badge-content">
-                                <i class="fas fa-check" aria-hidden="true"></i>
-                                <span>{% trans 'In Stock' %}</span>
+                                <i class="fas fa-check"></i>
+                                {% trans 'In Stock' %}
                             </div>
                         </div>
                         {% endif %}
                         
-                        <!-- Decorative Background Elements -->
-                        <div class="image-decoration-1" aria-hidden="true"></div>
-                        <div class="image-decoration-2" aria-hidden="true"></div>
+                        <!-- Decorative Elements -->
+                        <div class="image-decoration-1"></div>
+                        <div class="image-decoration-2"></div>
                     </div>
                     
-                    <!-- Thumbnail Gallery -->
-                    <div class="thumbnail-gallery">
-                        <div class="thumbnail-container">
-                            <button class="thumbnail-item active" 
-                                    data-image="{{ product.image_url }}"
-                                    aria-label="{% trans 'Main product image' %}">
+                    <!-- Thumbnail Gallery - Below Main Image -->
+                    <div class="thumbnail-gallery-horizontal">
+                        <div class="thumbnail-scroll-horizontal">
+                            <div class="thumbnail-item active" data-image="{{ product.image_url }}">
                                 <img src="{{ product.image_url }}" alt="{{ product.name }}">
-                            </button>
+                            </div>
                             {% for image in product.additional_images %}
-                            <button class="thumbnail-item" 
-                                    data-image="{{ image }}"
-                                    aria-label="{% trans 'Additional product image' %}">
-                                <img src="{{ image }}" alt="{{ product.name }}">
-                            </button>
+                            <div class="thumbnail-item" data-image="{{ image }}">
+                                <img src="{{ image }}" alt="{{ image.alt_text|default:product.name }}">
+                            </div>
                             {% endfor %}
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Product Information -->
-            <div class="col-lg-5 product-info">
-                <!-- Product Title -->
-                <header class="product-header mb-4">
-                    <div class="title-accent" aria-hidden="true"></div>
+            <!-- Right Column - Product Info -->
+            <div class="col-lg-5 d-flex flex-column justify-content-start">
+                <!-- Product Title with Accent -->
+                <div class="product-title-section mb-4 mt-0">
+                    <div class="title-accent"></div>
                     <h1 class="product-title">{{ product.name }}</h1>
-                </header>
-                
-                <!-- Pricing Information -->
-                <div class="price-card mb-4">
-                    <div class="price-label">{% trans "Price" %}</div>
-                    <div class="price-value">
-                        {{ product.price_per_sqm }} 
-                        <span class="currency">KGS</span>
-                    </div>
-                    <div class="price-decoration" aria-hidden="true"></div>
                 </div>
                 
-                <!-- Call-to-Action Buttons -->
-                <div class="cta-buttons mb-5">
-                    <a href="{% url 'calculator' %}" 
-                       class="btn btn-primary btn-modern"
-                       aria-label="{% trans 'Calculate product cost' %}">
-                        <i class="fas fa-calculator" aria-hidden="true"></i>
+                <!-- Price Card with Modern Design -->
+                <div class="price-card-modern mb-4">
+                    <div class="price-label">{% trans "Price" %}</div>
+                    <div class="price-value">{{ product.price_per_sqm }} <span class="currency">KGS</span></div>
+                    <div class="price-decoration"></div>
+                </div>
+                
+                <!-- Action Buttons with Modern Style -->
+                <div class="action-buttons-modern mb-5">
+                    <a href="{% url 'calculator' %}" class="btn-modern btn-primary-modern">
+                        <i class="fas fa-calculator"></i>
                         <span>{% trans 'Calculate Cost' %}</span>
-                        <div class="btn-ripple" aria-hidden="true"></div>
+                        <div class="btn-ripple"></div>
                     </a>
-                    <a href="{% url 'contact' %}" 
-                       class="btn btn-secondary btn-modern"
-                       aria-label="{% trans 'Get price quote' %}">
-                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                    <a href="{% url 'contact' %}" class="btn-modern btn-secondary-modern">
+                        <i class="fas fa-envelope"></i>
                         <span>{% trans 'Get Quote' %}</span>
-                        <div class="btn-ripple" aria-hidden="true"></div>
+                        <div class="btn-ripple"></div>
                     </a>
                 </div>
             </div>
@@ -276,35 +260,13 @@ document.addEventListener('DOMContentLoaded', function() {
     pointer-events: none;
 }
 
-/* === PRODUCT GALLERY STYLES === */
+/* Modern Gallery */
 .product-gallery-modern {
     position: relative;
     z-index: 2;
 }
 
-/* Main Image Container */
-.main-image-container {
-    position: relative;
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    margin-bottom: 1.5rem;
-    min-height: 500px;
-}
-
-.main-product-image {
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.main-image-container:hover .main-product-image {
-    transform: scale(1.05);
-}
-
-/* Stock Badge */
-.stock-badge {
+.floating-badge {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -328,6 +290,15 @@ document.addEventListener('DOMContentLoaded', function() {
 @keyframes float {
     0%, 100% { transform: translateY(0px) rotate(0deg); }
     50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+.main-image-modern {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    margin-bottom: 1.5rem;
+    min-height: 500px;
 }
 
 .image-decoration-1,
@@ -366,12 +337,12 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: scale(1.05);
 }
 
-/* Thumbnail Gallery */
-.thumbnail-gallery {
+/* Horizontal Thumbnail Gallery */
+.thumbnail-gallery-horizontal {
     margin-top: 1rem;
 }
 
-.thumbnail-container {
+.thumbnail-scroll-horizontal {
     display: flex;
     flex-direction: row;
     gap: 16px;
@@ -387,14 +358,9 @@ document.addEventListener('DOMContentLoaded', function() {
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: 3px solid #e9ecef;
+    position: relative;
     background: #ffffff;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 0;
-}
-
-.thumbnail-item:focus {
-    outline: 2px solid #fd7e14;
-    outline-offset: 2px;
 }
 
 .thumbnail-item.active {
@@ -412,7 +378,6 @@ document.addEventListener('DOMContentLoaded', function() {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    pointer-events: none;
 }
 
 /* Modern Breadcrumb */
@@ -516,7 +481,7 @@ document.addEventListener('DOMContentLoaded', function() {
     height: 80px;
     background: linear-gradient(135deg, rgba(253, 126, 20, 0.1), rgba(253, 126, 20, 0.05));
     border-radius: 50%;
-    z-index: 1;
+    z-index: 0;
 }
 
 /* Modern Action Buttons */
