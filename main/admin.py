@@ -43,18 +43,19 @@ class CategoryForm(forms.ModelForm):
         else:
             original_name = 'image.jpg'
 
-        # Заменяем пробелы на _
         safe_name = re.sub(r'\s+', '_', original_name)
-        # Убираем все символы кроме букв, цифр, точек, дефисов и подчёркиваний
         safe_name = re.sub(r'[^\w.\-]', '', safe_name)
         filename = f"{prefix}_{safe_name}"
 
         if not filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
             raise forms.ValidationError("Файл должен быть изображением (PNG, JPG, JPEG, GIF).")
 
-        path = os.path.join('uploads', filename)
-        full_path = os.path.join(settings.MEDIA_ROOT, path)
+        path = f'uploads/{filename}'
+        full_path = f'media/{path}'
+        
         os.makedirs(os.path.dirname(full_path), exist_ok=True)
+
+        print(full_path)
 
         if uploaded_file:
             with open(full_path, 'wb+') as f:
@@ -66,7 +67,7 @@ class CategoryForm(forms.ModelForm):
                 with open(full_path, 'wb') as f:
                     f.write(response.content)
 
-        instance.image_url = settings.HOST + '/' + path
+        instance.image_url = settings.HOST + '/' + full_path
 
         if commit:
             instance.save()
