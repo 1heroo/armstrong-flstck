@@ -74,12 +74,22 @@ def category_detail(request, category_id):
         characteristics_filter[name] = sorted(list(values))
     
     # Получаем минимальную и максимальную цены для слайдера
-    prices = [product.get('price_per_sqm', 0) for product in all_products if product.get('price_per_sqm')]
+    prices = []
+    for product in all_products:
+        price_str = product.get('price_per_sqm', '0')
+        if price_str:
+            try:
+                price = float(price_str)
+                prices.append(price)
+            except (ValueError, TypeError):
+                continue
+    
     min_price = min(prices) if prices else 0
     max_price = max(prices) if prices else 1000
 
-    print(min_price)
-    print(max_price, '\n\n\n\n')
+    print(f"Prices found: {prices}")
+    print(f"Min price: {min_price}")
+    print(f"Max price: {max_price}")
     return render(request, 'main/category_detail.html', {
         'category': category.get_translation_json(language),
         'product_sections': product_sections,
