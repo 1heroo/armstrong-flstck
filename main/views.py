@@ -98,7 +98,7 @@ def category_detail(request, category_id):
         'min_price': min_price,
         'max_price': max_price
     })
-
+    
 
 def product_detail(request, product_id):
     language = translation.get_language()
