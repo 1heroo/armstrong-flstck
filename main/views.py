@@ -80,12 +80,24 @@ def category_detail(request, category_id):
         if price and price > 0:
             prices.append(float(price))
     
-    min_price = min(prices) if prices else 0
-    max_price = max(prices) if prices else 1000
+    if prices:
+        min_price = min(prices)
+        max_price = max(prices)
+        # Добавляем небольшой буфер для удобства использования слайдера
+        price_range = max_price - min_price
+        if price_range > 0:
+            buffer = price_range * 0.1  # 10% буфер
+            min_price = max(0, min_price - buffer)
+            max_price = max_price + buffer
+    else:
+        min_price = 0
+        max_price = 100
 
     print(f"Prices found: {prices}")
     print(f"Min price: {min_price}")
     print(f"Max price: {max_price}")
+    print(f"All products data: {[{'name': p.get('name'), 'price': p.get('price_per_sqm')} for p in all_products]}")
+    print(f"Product sections: {len(product_sections)}")
     return render(request, 'main/category_detail.html', {
         'category': category.get_translation_json(language),
         'product_sections': product_sections,

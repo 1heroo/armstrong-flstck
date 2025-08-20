@@ -287,6 +287,13 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentMin = minPrice;
     let currentMax = maxPrice;
     
+    console.log('Price slider initialization:', {
+        minPrice: minPrice,
+        maxPrice: maxPrice,
+        sliderMinValue: priceSliderMin?.min,
+        sliderMaxValue: priceSliderMax?.max
+    });
+    
     function updateSliderRange() {
         if (!sliderRange || !priceSliderMin || !priceSliderMax) return;
         
@@ -307,12 +314,19 @@ document.addEventListener('DOMContentLoaded', function() {
             currentMax = maxVal;
         }
         
-        // Update visual range
-        const minPercent = ((currentMin - minPrice) / (maxPrice - minPrice)) * 100;
-        const maxPercent = ((currentMax - minPrice) / (maxPrice - minPrice)) * 100;
-        
-        sliderRange.style.left = minPercent + '%';
-        sliderRange.style.width = (maxPercent - minPercent) + '%';
+        // Prevent division by zero and ensure valid range
+        const priceRange = maxPrice - minPrice;
+        if (priceRange <= 0) {
+            sliderRange.style.left = '0%';
+            sliderRange.style.width = '100%';
+        } else {
+            // Update visual range with bounds checking
+            const minPercent = Math.max(0, Math.min(100, ((currentMin - minPrice) / priceRange) * 100));
+            const maxPercent = Math.max(0, Math.min(100, ((currentMax - minPrice) / priceRange) * 100));
+            
+            sliderRange.style.left = minPercent + '%';
+            sliderRange.style.width = Math.max(0, maxPercent - minPercent) + '%';
+        }
         
         // Update display values
         if (currentPriceMin) currentPriceMin.textContent = Math.round(currentMin);
@@ -323,7 +337,22 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize slider
     if (priceSliderMin && priceSliderMax) {
-        updateSliderRange();
+        // Don't call filterProducts() on initial load - let products show naturally
+        // updateSliderRange();
+        
+        // Just update the visual slider without filtering
+        const priceRange = maxPrice - minPrice;
+        if (priceRange > 0) {
+            const minPercent = Math.max(0, Math.min(100, ((currentMin - minPrice) / priceRange) * 100));
+            const maxPercent = Math.max(0, Math.min(100, ((currentMax - minPrice) / priceRange) * 100));
+            
+            sliderRange.style.left = minPercent + '%';
+            sliderRange.style.width = Math.max(0, maxPercent - minPercent) + '%';
+        }
+        
+        // Update display values
+        if (currentPriceMin) currentPriceMin.textContent = Math.round(currentMin);
+        if (currentPriceMax) currentPriceMax.textContent = Math.round(currentMax);
         
         priceSliderMin.addEventListener('input', updateSliderRange);
         priceSliderMax.addEventListener('input', updateSliderRange);
@@ -503,6 +532,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 const price = parseFloat(priceText) || 0;
+                
+                console.log('Price filtering:', {
+                    originalText: priceElement.textContent,
+                    cleanedText: priceText,
+                    parsedPrice: price,
+                    currentMin: currentMin,
+                    currentMax: currentMax,
+                    willShow: !(price < currentMin || price > currentMax)
+                });
                 
                 if (price < currentMin || price > currentMax) {
                     shouldShow = false;
@@ -849,47 +887,54 @@ document.addEventListener('DOMContentLoaded', function() {
 
 .dual-range-slider {
     position: relative;
-    height: 6px;
+    height: 30px;
     margin: 15px 0;
+    padding: 10px 0;
 }
 
 .range-slider {
     position: absolute;
     width: 100%;
-    height: 6px;
+    height: 30px;
     background: transparent;
     cursor: pointer;
     -webkit-appearance: none;
     appearance: none;
     pointer-events: none;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .range-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
-    background: #fd7e14;
+    background: #fd7e14 !important;
     cursor: pointer;
-    border: 2px solid #fff;
-    box-shadow: 0 2px 6px rgba(253, 126, 20, 0.3);
+    border: 3px solid #fff !important;
+    box-shadow: 0 2px 8px rgba(253, 126, 20, 0.4) !important;
     pointer-events: all;
     position: relative;
-    z-index: 2;
+    z-index: 100 !important;
+    margin-top: -8px;
 }
 
 .range-slider::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
-    background: #fd7e14;
+    background: #fd7e14 !important;
     cursor: pointer;
-    border: 2px solid #fff;
-    box-shadow: 0 2px 6px rgba(253, 126, 20, 0.3);
+    border: 3px solid #fff !important;
+    box-shadow: 0 2px 8px rgba(253, 126, 20, 0.4) !important;
     pointer-events: all;
     position: relative;
-    z-index: 2;
+    z-index: 100 !important;
+    -moz-appearance: none;
+    margin-top: -8px;
 }
 
 .slider-track {
@@ -901,6 +946,7 @@ document.addEventListener('DOMContentLoaded', function() {
     background: #e9ecef;
     border-radius: 3px;
     transform: translateY(-50%);
+    z-index: 1;
 }
 
 .slider-range {
