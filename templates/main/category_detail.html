@@ -489,7 +489,18 @@ document.addEventListener('DOMContentLoaded', function() {
             // Price filter with dual range sliders
             const priceElement = product.querySelector('.product-price');
             if (priceElement && shouldShow) {
-                const priceText = priceElement.textContent.replace(/[^\d.,]/g, '').replace(',', '.');
+                // More robust price parsing - handle different decimal separators and formats
+                let priceText = priceElement.textContent.trim();
+                // Remove currency symbols and extra spaces
+                priceText = priceText.replace(/[^\d.,\s]/g, '');
+                // Handle comma as decimal separator (European format)
+                if (priceText.includes(',') && !priceText.includes('.')) {
+                    priceText = priceText.replace(',', '.');
+                } else if (priceText.includes(',') && priceText.includes('.')) {
+                    // Handle cases like "1,234.56" - remove comma thousands separator
+                    priceText = priceText.replace(/,/g, '');
+                }
+                
                 const price = parseFloat(priceText) || 0;
                 
                 if (price < currentMin || price > currentMax) {

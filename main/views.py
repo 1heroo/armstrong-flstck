@@ -76,13 +76,9 @@ def category_detail(request, category_id):
     # Получаем минимальную и максимальную цены для слайдера
     prices = []
     for product in all_products:
-        price_str = product.get('price_per_sqm', '0')
-        if price_str:
-            try:
-                price = float(price_str)
-                prices.append(price)
-            except (ValueError, TypeError):
-                continue
+        price = product.get('price_per_sqm', 0)
+        if price and price > 0:
+            prices.append(float(price))
     
     min_price = min(prices) if prices else 0
     max_price = max(prices) if prices else 1000
