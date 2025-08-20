@@ -77,7 +77,9 @@ def category_detail(request, category_id):
     prices = [product.get('price_per_sqm', 0) for product in all_products if product.get('price_per_sqm')]
     min_price = min(prices) if prices else 0
     max_price = max(prices) if prices else 1000
-    
+
+    print(min_price)
+    print(max_price, '\n\n\n\n')
     return render(request, 'main/category_detail.html', {
         'category': category.get_translation_json(language),
         'product_sections': product_sections,
