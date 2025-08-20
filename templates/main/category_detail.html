@@ -178,7 +178,7 @@
                                     <p class="card-text text-muted small mb-2 product-description">{{ product.description|truncatechars:100 }}</p>
                                     <div class="mt-auto">
                                         <div class="price-container text-end">
-                                            <span class="price-value fw-bold text-primary fs-5 product-price">{{ product.price_per_sqm }}</span>
+                                            <span class="price-value fw-bold text-primary fs-5 product-price">{{ product.price_per_sqm|floatformat:2 }}</span>
                                             <span class="price-unit text-muted small ms-1">KGS/m²</span>
                                         </div>
                                     </div>
@@ -281,8 +281,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentPriceMax = document.getElementById('currentPriceMax');
     const resetPriceRange = document.getElementById('resetPriceRange');
     
-    let minPrice = parseFloat(priceSliderMin?.min || 0);
-    let maxPrice = parseFloat(priceSliderMax?.max || 1000);
+    // Ensure prices are parsed correctly regardless of server locale
+    let minPrice = parseFloat((priceSliderMin?.min || '0').toString().replace(',', '.'));
+    let maxPrice = parseFloat((priceSliderMax?.max || '1000').toString().replace(',', '.'));
     let currentMin = minPrice;
     let currentMax = maxPrice;
     

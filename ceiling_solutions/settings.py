@@ -123,8 +123,12 @@ LOCALE_PATHS = [
 TIME_ZONE = 'Asia/Bishkek'
 
 USE_I18N = True
-USE_L10N = True
+USE_L10N = False  # Disable localized formatting to prevent comma decimal separators
 USE_TZ = True
+
+# Force decimal separator to be dot instead of comma
+USE_THOUSAND_SEPARATOR = False
+DECIMAL_SEPARATOR = '.'
 
 
 # Static files (CSS, JavaScript, Images)

@@ -131,7 +131,7 @@ class Product(models.Model):
             'name': translation.name if translation else None,
             'type_name': type_product_name,
             'description': translation.description if translation else None,
-            'price_per_sqm': float(self.price_per_sqm),
+            'price_per_sqm': float(self.price_per_sqm.normalize()),
             'in_stock': self.in_stock,
             'image_url': images[0].image_url if images else None,
             'additional_images': [img.image_url for img in images[1:]] if images.count() > 1 else [],
